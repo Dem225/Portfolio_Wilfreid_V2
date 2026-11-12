@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des formations | Administration</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body class="bg-gray-50 font-['Inter']">
+
+<div class="flex min-h-screen">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-white border-r border-gray-200 fixed inset-y-0 left-0 z-30">
+
+        <div class="p-6 border-b border-gray-100">
+            <h1 class="text-xl font-extrabold text-gray-900">
+                Wilfried
+            </h1>
+            <p class="text-xs text-gray-500 mt-1">
+                Administration
+            </p>
+        </div>
+
+        <nav class="p-4 space-y-2">
+
+            <a href="dashboard.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                <span class="material-symbols-outlined">dashboard</span>
+                Vue d'ensemble
+            </a>
+
+            <a href="projets.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                <span class="material-symbols-outlined">code</span>
+                Projets
+            </a>
+
+            <a href="competences.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                <span class="material-symbols-outlined">psychology</span>
+                Compétences
+            </a>
+
+            <a href="formations.html" class="flex items-center gap-3 p-3 rounded-lg bg-gray-100 text-gray-900 font-semibold">
+                <span class="material-symbols-outlined">school</span>
+                Formations
+            </a>
+
+            <a href="messages.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                <span class="material-symbols-outlined">mail</span>
+                Messages
+            </a>
+
+            <button id="logout-btn" class="w-full flex items-center gap-3 p-3 rounded-lg text-red-600 hover:bg-red-50">
+                <span class="material-symbols-outlined">logout</span>
+                Déconnexion
+            </button>
+
+        </nav>
+    </aside>
+
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="ml-64 flex-1 p-8">
+
+        <header class="flex justify-between items-center mb-10">
+            <div>
+                <p class="text-sm text-gray-500">Espace administrateur</p>
+                <h2 class="text-2xl font-bold text-gray-900">
+                    Gestion des formations
+                </h2>
+            </div>
+
+            <span class="text-sm text-gray-500">
+                Compte administrateur
+            </span>
+        </header>
+
+
+        <!-- TITRE ET BOUTON -->
+        <section class="flex justify-between items-center mb-8">
+
+            <div>
+                <h3 class="text-lg font-bold text-gray-900">
+                    Mes formations
+                </h3>
+
+                <p class="text-sm text-gray-500 mt-1">
+                    Ajoutez, modifiez et supprimez vos formations et certifications.
+                </p>
+            </div>
+
+            <button
+                id="open-formation-form"
+                class="bg-gray-900 text-white px-5 py-3 rounded-lg hover:bg-gray-700 flex items-center gap-2"
+            >
+                <span class="material-symbols-outlined">add</span>
+                Ajouter une formation
+            </button>
+
+        </section>
+
+
+        <!-- MESSAGE DE STATUT -->
+        <div id="formation-status" class="hidden mb-6 p-4 rounded-lg text-sm"></div>
+
+
+        <!-- FORMULAIRE -->
+        <section id="formation-form-section" class="hidden bg-white border border-gray-200 rounded-xl p-6 mb-8">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <h3 id="formation-form-title" class="text-lg font-bold">
+                    Ajouter une formation
+                </h3>
+
+                <button id="close-formation-form" type="button" class="text-gray-500 hover:text-black">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+
+            </div>
+
+
+            <form id="formation-form" class="space-y-5">
+
+                <!-- TITRE -->
+                <div>
+                    <label for="formation-title" class="block text-sm font-semibold mb-2">
+                        Intitulé de la formation
+                    </label>
+
+                    <input
+                        type="text"
+                        id="formation-title"
+                        required
+                        maxlength="150"
+                        class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
+                        placeholder="Ex : Développement Backend avec Python"
+                    >
+                </div>
+
+
+                <!-- ÉTABLISSEMENT -->
+                <div>
+                    <label for="formation-institution" class="block text-sm font-semibold mb-2">
+                        Établissement
+                    </label>
+
+                    <input
+                        type="text"
+                        id="formation-institution"
+                        required
+                        maxlength="150"
+                        class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
+                        placeholder="Ex : NAN CI"
+                    >
+                </div>
+
+
+                <!-- DESCRIPTION -->
+                <div>
+                    <label for="formation-description" class="block text-sm font-semibold mb-2">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="formation-description"
+                        required
+                        rows="5"
+                        class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
+                        placeholder="Décrivez le contenu de cette formation..."
+                    ></textarea>
+                </div>
+
+
+                <!-- TYPE -->
+                <div>
+                    <label for="formation-type" class="block text-sm font-semibold mb-2">
+                        Type
+                    </label>
+
+                    <select
+                        id="formation-type"
+                        required
+                        class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
+                    >
+                        <option value="Formation">Formation</option>
+                        <option value="Certification">Certification</option>
+                    </select>
+                </div>
+
+
+                <!-- DATES -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                    <div>
+                        <label for="formation-start-date" class="block text-sm font-semibold mb-2">
+                            Date de début
+                        </label>
+
+                        <input
+                            type="date"
+                            id="formation-start-date"
+                            class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="formation-end-date" class="block text-sm font-semibold mb-2">
+                            Date de fin
+                        </label>
+
+                        <input
+                            type="date"
+                            id="formation-end-date"
+                            class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
+                        >
+                    </div>
+
+                </div>
+
+
+                <!-- CERTIFICAT -->
+                <div>
+                    <label for="formation-certificate" class="block text-sm font-semibold mb-2">
+                        Lien du certificat (facultatif)
+                    </label>
+
+                    <input
+                        type="url"
+                        id="formation-certificate"
+                        class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
+                        placeholder="https://exemple.com/certificat"
+                    >
+                </div>
+
+
+                <!-- ÉTAT -->
+                <div class="space-y-3">
+
+                    <div class="flex items-center gap-3">
+                        <input
+                            type="checkbox"
+                            id="formation-completed"
+                            class="w-4 h-4"
+                        >
+
+                        <label for="formation-completed" class="text-sm font-medium">
+                            Formation terminée
+                        </label>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <input
+                            type="checkbox"
+                            id="formation-featured"
+                            class="w-4 h-4"
+                        >
+
+                        <label for="formation-featured" class="text-sm font-medium">
+                            Mettre cette formation en avant
+                        </label>
+                    </div>
+
+                </div>
+
+
+                <!-- BOUTONS -->
+                <div class="flex gap-3">
+
+                    <button
+                        type="submit"
+                        id="save-formation-btn"
+                        class="bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-700"
+                    >
+                        Enregistrer la formation
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancel-formation-form"
+                        class="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-100"
+                    >
+                        Annuler
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- LISTE DES FORMATIONS -->
+        <section class="bg-white border border-gray-200 rounded-xl">
+
+            <div class="p-6 border-b border-gray-100">
+                <h3 class="font-bold text-gray-900">
+                    Toutes les formations
+                </h3>
+            </div>
+
+            <div id="formations-container" class="p-6">
+
+                <p class="text-center text-gray-400 py-8">
+                    Chargement des formations...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/auth.js"></script>
+<script src="js/formations.js"></script>
+<script src="js/sidebar.js"></script>
+</body>
+</html>

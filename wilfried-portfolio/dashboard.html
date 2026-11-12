@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Administrateur | Wilfried Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ["Inter", "sans-serif"]
+                    },
+                    colors: {
+                        primary: "#5146e5"
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-inter">
+
+    <div class="min-h-screen">
+
+        <!-- MENU LATERAL -->
+        <aside class="fixed left-0 top-0 z-40 flex h-screen w-64 flex-col bg-white border-r border-gray-200">
+
+            <div class="flex items-center gap-3 px-6 py-7">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white">
+                    <span class="material-symbols-outlined">terminal</span>
+                </div>
+
+                <div>
+                    <h1 class="font-bold text-lg">Wilfried</h1>
+                    <p class="text-xs text-gray-500">Administration</p>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 space-y-2">
+
+                <a href="dashboard.html"
+                   class="flex items-center gap-3 rounded-xl bg-primary px-4 py-3 text-white">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span class="text-sm font-medium">Vue d'ensemble</span>
+                </a>
+
+                <a href="projets.html"
+                   class="flex items-center gap-3 rounded-xl px-4 py-3 text-gray-600 hover:bg-gray-100">
+                    <span class="material-symbols-outlined">code</span>
+                    <span class="text-sm font-medium">Projets</span>
+                </a>
+
+                <a href="competences.html"
+                   class="flex items-center gap-3 rounded-xl px-4 py-3 text-gray-600 hover:bg-gray-100">
+                    <span class="material-symbols-outlined">psychology</span>
+                    <span class="text-sm font-medium">Compétences</span>
+                </a>
+
+                <a href="formations.html"
+                   class="flex items-center gap-3 rounded-xl px-4 py-3 text-gray-600 hover:bg-gray-100">
+                    <span class="material-symbols-outlined">school</span>
+                    <span class="text-sm font-medium">Formations</span>
+                </a>
+
+                <a href="messages.html"
+                   class="flex items-center gap-3 rounded-xl px-4 py-3 text-gray-600 hover:bg-gray-100">
+                    <span class="material-symbols-outlined">mail</span>
+                    <span class="text-sm font-medium">Messages</span>
+                </a>
+
+            </nav>
+
+            <div class="border-t border-gray-200 p-4">
+
+                <button id="logout-btn"
+                        class="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-red-600 hover:bg-red-50">
+
+                    <span class="material-symbols-outlined">logout</span>
+                    <span class="text-sm font-medium">Déconnexion</span>
+
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTENU PRINCIPAL -->
+        <div class="ml-64">
+
+            <!-- BARRE SUPÉRIEURE -->
+            <header class="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-gray-200 bg-white px-8">
+
+                <div>
+                    <h2 class="font-semibold text-lg">Espace administrateur</h2>
+                    <p class="text-xs text-gray-500">Gestion de votre portfolio</p>
+                </div>
+
+                <div class="flex items-center gap-3">
+
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white">
+                        <span class="material-symbols-outlined">person</span>
+                    </div>
+
+                    <div>
+                        <p id="admin-email" class="text-sm font-semibold">
+                            Administrateur
+                        </p>
+
+                        <p class="text-xs text-gray-500">
+                            Compte administrateur
+                        </p>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- TABLEAU DE BORD -->
+            <main class="space-y-8 p-8">
+
+                <!-- BIENVENUE -->
+                <section class="flex flex-wrap items-center justify-between gap-4">
+
+                    <div>
+                        <p class="mb-2 text-sm font-medium text-primary">
+                            TABLEAU DE BORD
+                        </p>
+
+                        <h1 class="text-3xl font-bold">
+                            Vue d'ensemble
+                        </h1>
+
+                        <p class="mt-2 text-sm text-gray-500">
+                            Gérez les contenus et les activités de votre portfolio.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-gray-200 bg-white px-4 py-3">
+                        <p class="text-xs text-gray-500">État de l'administration</p>
+                        <p class="mt-1 flex items-center gap-2 text-sm font-semibold">
+                            <span class="h-2 w-2 rounded-full bg-green-500"></span>
+                            Connecté
+                        </p>
+                    </div>
+
+                </section>
+
+
+                <!-- CARTES STATISTIQUES -->
+                <section class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+
+                    <!-- PROJETS -->
+                    <article class="rounded-2xl border border-gray-200 bg-white p-6">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-primary">
+                                <span class="material-symbols-outlined">code</span>
+                            </div>
+
+                            <span class="text-xs text-gray-400">Total</span>
+
+                        </div>
+
+                        <p class="mt-5 text-sm text-gray-500">Projets</p>
+
+                        <p id="total-projects" class="mt-1 text-3xl font-bold">
+                            —
+                        </p>
+
+                    </article>
+
+
+                    <!-- COMPÉTENCES -->
+                    <article class="rounded-2xl border border-gray-200 bg-white p-6">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
+                                <span class="material-symbols-outlined">psychology</span>
+                            </div>
+
+                            <span class="text-xs text-gray-400">Total</span>
+
+                        </div>
+
+                        <p class="mt-5 text-sm text-gray-500">Compétences</p>
+
+                        <p id="total-skills" class="mt-1 text-3xl font-bold">
+                            —
+                        </p>
+
+                    </article>
+
+
+                    <!-- FORMATIONS -->
+                    <article class="rounded-2xl border border-gray-200 bg-white p-6">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600">
+                                <span class="material-symbols-outlined">school</span>
+                            </div>
+
+                            <span class="text-xs text-gray-400">Total</span>
+
+                        </div>
+
+                        <p class="mt-5 text-sm text-gray-500">Formations</p>
+
+                        <p id="total-formations" class="mt-1 text-3xl font-bold">
+                            —
+                        </p>
+
+                    </article>
+
+
+                    <!-- MESSAGES -->
+                    <article class="rounded-2xl border border-gray-200 bg-white p-6">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
+                                <span class="material-symbols-outlined">mail</span>
+                            </div>
+
+                            <span class="text-xs text-gray-400">Total</span>
+
+                        </div>
+
+                        <p class="mt-5 text-sm text-gray-500">Messages reçus</p>
+
+                        <p id="total-messages" class="mt-1 text-3xl font-bold">
+                            —
+                        </p>
+
+                        <p class="mt-2 text-xs text-gray-500">
+                            Non lus :
+                            <span id="unread-messages" class="font-semibold">—</span>
+                        </p>
+
+                    </article>
+
+                </section>
+
+
+                <!-- DERNIERS MESSAGES -->
+                <section class="rounded-2xl border border-gray-200 bg-white p-6">
+
+                    <div class="mb-6 flex items-center justify-between">
+
+                        <div>
+                            <h2 class="text-lg font-bold">Derniers messages</h2>
+                            <p class="mt-1 text-sm text-gray-500">
+                                Les derniers messages reçus depuis votre portfolio.
+                            </p>
+                        </div>
+
+                        <a href="messages.html"
+                           class="text-sm font-semibold text-primary hover:underline">
+                            Voir tous
+                        </a>
+
+                    </div>
+
+                    <div id="recent-messages" class="space-y-3">
+
+                        <p class="py-6 text-center text-sm text-gray-400">
+                            Les messages seront chargés ici.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PROJETS RÉCENTS -->
+                <section class="rounded-2xl border border-gray-200 bg-white p-6">
+
+                    <div class="mb-6 flex items-center justify-between">
+
+                        <div>
+                            <h2 class="text-lg font-bold">Projets récents</h2>
+                            <p class="mt-1 text-sm text-gray-500">
+                                Les derniers projets enregistrés dans votre portfolio.
+                            </p>
+                        </div>
+
+                        <a href="projets.html"
+                           class="text-sm font-semibold text-primary hover:underline">
+                            Voir tous
+                        </a>
+
+                    </div>
+
+                    <div id="recent-projects" class="space-y-3">
+
+                        <p class="py-6 text-center text-sm text-gray-400">
+                            Les projets seront chargés ici.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCRIPTS -->
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/sidebar.js"></script>
+</body>
+</html>

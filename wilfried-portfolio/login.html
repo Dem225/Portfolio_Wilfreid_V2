@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Connexion Administrateur | Wilfried Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <div class="glow glow-left"></div>
+        <div class="glow glow-right"></div>
+
+        <section class="login-card">
+
+            <div class="logo">
+                <span class="material-symbols-outlined">terminal</span>
+            </div>
+
+            <div class="login-header">
+
+                <span class="eyebrow">WILFRIED PORTFOLIO</span>
+
+                <h1>Espace Administrateur</h1>
+
+                <p>
+                    Connectez-vous pour gérer votre portfolio
+                    et suivre votre activité.
+                </p>
+
+            </div>
+
+            <div class="error-alert" id="error-alert">
+                <span class="material-symbols-outlined">error</span>
+                <span id="error-message"></span>
+            </div>
+
+            <form id="login-form">
+
+                <div class="form-group">
+
+                    <label for="email">Adresse email</label>
+
+                    <div class="input-container">
+
+                        <span class="material-symbols-outlined">
+                            mail
+                        </span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="votre@email.com"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">Mot de passe</label>
+
+                    <div class="input-container">
+
+                        <span class="material-symbols-outlined">
+                            lock
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Votre mot de passe"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            id="toggle-password"
+                            aria-label="Afficher le mot de passe"
+                        >
+                            <span class="material-symbols-outlined" id="eye-icon">
+                                visibility
+                            </span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" id="submit-btn">
+
+                    <span id="btn-text">
+                        Connexion sécurisée
+                    </span>
+
+                    <span
+                        class="material-symbols-outlined loader"
+                        id="btn-loader"
+                    >
+                        progress_activity
+                    </span>
+
+                </button>
+
+            </form>
+
+            <div class="security-note">
+
+                <span class="material-symbols-outlined">
+                    verified_user
+                </span>
+
+                <span>Accès sécurisé à l'administration</span>
+
+            </div>
+
+        </section>
+
+        <footer>
+            © 2026 Wilfried Portfolio — Tous droits réservés.
+        </footer>
+
+    </main>
+
+    <script src="js/login.js"></script>
+
+</body>
+</html>
