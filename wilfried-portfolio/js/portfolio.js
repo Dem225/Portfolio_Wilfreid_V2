@@ -14,14 +14,29 @@ function escapeHTML(value) {
 
 // Vérification des liens externes
 function safeURL(value) {
+    if (!value) return null;
+
+    const cleanedValue = String(value).trim();
+
+    // Accepter les chemins d'images locaux
+    if (
+        cleanedValue.startsWith("images/") ||
+        cleanedValue.startsWith("./images/")
+    ) {
+        return cleanedValue;
+    }
+
+    // Accepter les liens HTTP et HTTPS
     try {
-        const url = new URL(value);
-        return ["http:", "https:"].includes(url.protocol) ? url.href : null;
+        const url = new URL(cleanedValue);
+
+        return ["http:", "https:"].includes(url.protocol)
+            ? url.href
+            : null;
     } catch {
         return null;
     }
 }
-
 // Formatage des dates
 function formatDate(value) {
     if (!value) return "Date non précisée";
