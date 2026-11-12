@@ -1192,3 +1192,15 @@ button, input, textarea {
         transition: none;
     }
 }
+/* SKILLS LOGOS */
+.skill-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: block;
+}
+
+.skill-icon .skill-logo {
+    width: 36px;
+    height: 36px;
+}

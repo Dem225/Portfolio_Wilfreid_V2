@@ -1,6 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="fr">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/simple-icons.min.css"
+>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,286 +20,311 @@
 
 <body class="bg-gray-50 font-['Inter']">
 
-<div class="flex min-h-screen">
+    <div class="flex min-h-screen">
 
-    <!-- SIDEBAR -->
-    <aside class="w-64 bg-white border-r border-gray-200 fixed inset-y-0 left-0 z-30">
-
-        <div class="p-6 border-b border-gray-100">
-            <h1 class="text-xl font-extrabold text-gray-900">
-                Wilfried
-            </h1>
-            <p class="text-xs text-gray-500 mt-1">
-                Administration
-            </p>
-        </div>
-
-        <nav class="p-4 space-y-2">
-
-            <a href="dashboard.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
-                <span class="material-symbols-outlined">dashboard</span>
-                Vue d'ensemble
-            </a>
-
-            <a href="projets.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
-                <span class="material-symbols-outlined">code</span>
-                Projets
-            </a>
-
-            <a href="competences.html" class="flex items-center gap-3 p-3 rounded-lg bg-gray-100 text-gray-900 font-semibold">
-                <span class="material-symbols-outlined">psychology</span>
-                Compétences
-            </a>
-
-            <a href="formations.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
-                <span class="material-symbols-outlined">school</span>
-                Formations
-            </a>
-
-            <a href="messages.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
-                <span class="material-symbols-outlined">mail</span>
-                Messages
-            </a>
-
-            <button id="logout-btn" class="w-full flex items-center gap-3 p-3 rounded-lg text-red-600 hover:bg-red-50">
-                <span class="material-symbols-outlined">logout</span>
-                Déconnexion
-            </button>
-
-        </nav>
-    </aside>
-
-
-    <!-- CONTENU PRINCIPAL -->
-    <main class="ml-64 flex-1 p-8">
-
-        
-        
-        <header class="sticky top-0 z-30 -mx-8 -mt-8 mb-10 flex h-20 items-center justify-between border-b border-gray-200 bg-white px-8">
-            <div>
-                <h2 class="text-lg font-semibold text-gray-900">
-                    Espace administrateur
-                </h2>
-                <p class="text-xs text-gray-500">
-                    Gestion de votre portfolio
-                </p>
-            </div>
-
-            <div class="flex items-center gap-3">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#5146e5] text-white">
-                    <span class="material-symbols-outlined">person</span>
-                </div>
-
-                <div>
-                    <p class="text-sm font-semibold text-gray-900">
-                        Administrateur
-                    </p>
-                    <p class="text-xs text-gray-500">
-                        Compte administrateur
-                    </p>
-                </div>
-            </div>
-        </header>
-
-
-
-
-        <!-- TITRE ET BOUTON -->
-        <section class="flex justify-between items-center mb-8">
-
-            <div>
-                <h3 class="text-lg font-bold text-gray-900">
-                    Mes compétences
-                </h3>
-
-                <p class="text-sm text-gray-500 mt-1">
-                    Ajoutez, modifiez et supprimez vos compétences techniques.
-                </p>
-            </div>
-
-            <button
-                id="open-skill-form"
-                class="bg-gray-900 text-white px-5 py-3 rounded-lg hover:bg-gray-700 flex items-center gap-2"
-            >
-                <span class="material-symbols-outlined">add</span>
-                Ajouter une compétence
-            </button>
-
-        </section>
-
-
-        <!-- MESSAGE DE STATUT -->
-        <div id="skill-status" class="hidden mb-6 p-4 rounded-lg text-sm"></div>
-
-
-        <!-- FORMULAIRE -->
-        <section id="skill-form-section" class="hidden bg-white border border-gray-200 rounded-xl p-6 mb-8">
-
-            <div class="flex justify-between items-center mb-6">
-
-                <h3 id="skill-form-title" class="text-lg font-bold">
-                    Ajouter une compétence
-                </h3>
-
-                <button id="close-skill-form" type="button" class="text-gray-500 hover:text-black">
-                    <span class="material-symbols-outlined">close</span>
-                </button>
-
-            </div>
-
-
-            <form id="skill-form" class="space-y-5">
-
-                <!-- NOM -->
-                <div>
-                    <label for="skill-name" class="block text-sm font-semibold mb-2">
-                        Nom de la compétence
-                    </label>
-
-                    <input
-                        type="text"
-                        id="skill-name"
-                        required
-                        maxlength="100"
-                        class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
-                        placeholder="Ex : Python"
-                    >
-                </div>
-
-
-                <!-- CATÉGORIE -->
-                <div>
-                    <label for="skill-category" class="block text-sm font-semibold mb-2">
-                        Catégorie
-                    </label>
-
-                    <select
-                        id="skill-category"
-                        required
-                        class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
-                    >
-                        <option value="">Choisir une catégorie</option>
-                        <option value="Backend & API">Backend & API</option>
-                        <option value="Frontend">Frontend</option>
-                        <option value="Bases de données">Bases de données</option>
-                        <option value="DevOps & Cloud">DevOps & Cloud</option>
-                        <option value="Outils & Tests">Outils & Tests</option>
-                        <option value="Intelligence artificielle">Intelligence artificielle</option>
-                        <option value="Sécurité & Authentification">Sécurité & Authentification</option>
-                        <option value="Architecture & Conception">Architecture & Conception</option>
-                        <option value="Autre">Autre</option>
-                    </select>
-                </div>
-
-
-                <!-- NIVEAU -->
-                <div>
-                    <label for="skill-level" class="block text-sm font-semibold mb-2">
-                        Niveau de maîtrise
-                    </label>
-
-                    <select
-                        id="skill-level"
-                        required
-                        class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
-                    >
-                        <option value="">Choisir un niveau</option>
-                        <option value="Débutant">Débutant</option>
-                        <option value="Intermédiaire">Intermédiaire</option>
-                        <option value="Avancé">Avancé</option>
-                        <option value="Expert">Expert</option>
-                    </select>
-                </div>
-
-
-                <!-- ICÔNE -->
-                <div>
-                    <label for="skill-icon" class="block text-sm font-semibold mb-2">
-                        Icône (facultatif)
-                    </label>
-
-                    <input
-                        type="text"
-                        id="skill-icon"
-                        maxlength="100"
-                        class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
-                        placeholder="Ex : 🐍 ou code"
-                    >
-
-                    <p class="text-xs text-gray-400 mt-2">
-                        Tu peux saisir un emoji ou un nom d'icône.
-                    </p>
-                </div>
-
-
-                <!-- MISE EN AVANT -->
-                <div class="flex items-center gap-3">
-
-                    <input
-                        type="checkbox"
-                        id="skill-is-featured"
-                        class="w-4 h-4"
-                    >
-
-                    <label for="skill-is-featured" class="text-sm font-medium">
-                        Mettre cette compétence en avant
-                    </label>
-
-                </div>
-
-
-                <!-- BOUTONS -->
-                <div class="flex gap-3">
-
-                    <button
-                        type="submit"
-                        id="save-skill-btn"
-                        class="bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-700"
-                    >
-                        Enregistrer la compétence
-                    </button>
-
-                    <button
-                        type="button"
-                        id="cancel-skill-form"
-                        class="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-100"
-                    >
-                        Annuler
-                    </button>
-
-                </div>
-
-            </form>
-
-        </section>
-
-
-        <!-- LISTE DES COMPÉTENCES -->
-        <section class="bg-white border border-gray-200 rounded-xl">
+        <!-- SIDEBAR -->
+        <aside class="w-64 bg-white border-r border-gray-200 fixed inset-y-0 left-0 z-30">
 
             <div class="p-6 border-b border-gray-100">
-                <h3 class="font-bold text-gray-900">
-                    Toutes les compétences
-                </h3>
-            </div>
-
-            <div id="skills-container" class="p-6">
-
-                <p class="text-center text-gray-400 py-8">
-                    Chargement des compétences...
+                <h1 class="text-xl font-extrabold text-gray-900">
+                    Wilfried
+                </h1>
+                <p class="text-xs text-gray-500 mt-1">
+                    Administration
                 </p>
-
             </div>
 
-        </section>
+            <nav class="p-4 space-y-2">
 
-    </main>
+                <a href="dashboard.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    Vue d'ensemble
+                </a>
 
-</div>
+                <a href="projets.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                    <span class="material-symbols-outlined">code</span>
+                    Projets
+                </a>
 
+                <a href="competences.html"
+                    class="flex items-center gap-3 p-3 rounded-lg bg-gray-100 text-gray-900 font-semibold">
+                    <span class="material-symbols-outlined">psychology</span>
+                    Compétences
+                </a>
+
+                <a href="formations.html"
+                    class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                    <span class="material-symbols-outlined">school</span>
+                    Formations
+                </a>
+
+                <a href="messages.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                    <span class="material-symbols-outlined">mail</span>
+                    Messages
+                </a>
+
+                <button id="logout-btn"
+                    class="w-full flex items-center gap-3 p-3 rounded-lg text-red-600 hover:bg-red-50">
+                    <span class="material-symbols-outlined">logout</span>
+                    Déconnexion
+                </button>
+
+            </nav>
+        </aside>
+
+
+        <!-- CONTENU PRINCIPAL -->
+        <main class="ml-64 flex-1 p-8">
+
+
+
+            <header
+                class="sticky top-0 z-30 -mx-8 -mt-8 mb-10 flex h-20 items-center justify-between border-b border-gray-200 bg-white px-8">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-900">
+                        Espace administrateur
+                    </h2>
+                    <p class="text-xs text-gray-500">
+                        Gestion de votre portfolio
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#5146e5] text-white">
+                        <span class="material-symbols-outlined">person</span>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-900">
+                            Administrateur
+                        </p>
+                        <p class="text-xs text-gray-500">
+                            Compte administrateur
+                        </p>
+                    </div>
+                </div>
+            </header>
+
+
+
+
+            <!-- TITRE ET BOUTON -->
+            <section class="flex justify-between items-center mb-8">
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-900">
+                        Mes compétences
+                    </h3>
+
+                    <p class="text-sm text-gray-500 mt-1">
+                        Ajoutez, modifiez et supprimez vos compétences techniques.
+                    </p>
+                </div>
+
+                <button id="open-skill-form"
+                    class="bg-gray-900 text-white px-5 py-3 rounded-lg hover:bg-gray-700 flex items-center gap-2">
+                    <span class="material-symbols-outlined">add</span>
+                    Ajouter une compétence
+                </button>
+
+            </section>
+
+
+            <!-- MESSAGE DE STATUT -->
+            <div id="skill-status" class="hidden mb-6 p-4 rounded-lg text-sm"></div>
+
+
+            <!-- FORMULAIRE -->
+            <section id="skill-form-section" class="hidden bg-white border border-gray-200 rounded-xl p-6 mb-8">
+
+                <div class="flex justify-between items-center mb-6">
+
+                    <h3 id="skill-form-title" class="text-lg font-bold">
+                        Ajouter une compétence
+                    </h3>
+
+                    <button id="close-skill-form" type="button" class="text-gray-500 hover:text-black">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+
+                </div>
+
+
+                <form id="skill-form" class="space-y-5">
+
+                    <!-- NOM -->
+                    <div>
+                        <label for="skill-name" class="block text-sm font-semibold mb-2">
+                            Nom de la compétence
+                        </label>
+
+                        <input type="text" id="skill-name" required maxlength="100"
+                            class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900"
+                            placeholder="Ex : Python">
+                    </div>
+
+
+                    <!-- CATÉGORIE -->
+                    <div>
+                        <label for="skill-category" class="block text-sm font-semibold mb-2">
+                            Catégorie
+                        </label>
+
+                        <select id="skill-category" required
+                            class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900">
+                            <option value="">Choisir une catégorie</option>
+                            <option value="Backend & API">Backend & API</option>
+                            <option value="Frontend">Frontend</option>
+                            <option value="Bases de données">Bases de données</option>
+                            <option value="DevOps & Cloud">DevOps & Cloud</option>
+                            <option value="Outils & Tests">Outils & Tests</option>
+                            <option value="Intelligence artificielle">Intelligence artificielle</option>
+                            <option value="Sécurité & Authentification">Sécurité & Authentification</option>
+                            <option value="Architecture & Conception">Architecture & Conception</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+
+
+                    <!-- NIVEAU -->
+                    <div>
+                        <label for="skill-level" class="block text-sm font-semibold mb-2">
+                            Niveau de maîtrise
+                        </label>
+
+                        <select id="skill-level" required
+                            class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900">
+                            <option value="">Choisir un niveau</option>
+                            <option value="Débutant">Débutant</option>
+                            <option value="Intermédiaire">Intermédiaire</option>
+                            <option value="Avancé">Avancé</option>
+                            <option value="Expert">Expert</option>
+                        </select>
+                    </div>
+
+
+                    <!-- ICÔNE -->
+                    <div>
+                        <label for="skill-icon" class="block text-sm font-semibold mb-2">
+                            Icône de la compétence
+                        </label>
+
+                        <select id="skill-icon"
+                            class="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-gray-900">
+                            <option value="">Choisir une icône</option>
+
+                            <optgroup label="Langages">
+                                <option value="python">Python</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="typescript">TypeScript</option>
+                                <option value="html5">HTML5</option>
+                                <option value="css3">CSS3</option>
+                                <option value="php">PHP</option>
+                            </optgroup>
+
+                            <optgroup label="Backend & API">
+                                <option value="django">Django</option>
+                                <option value="fastapi">FastAPI</option>
+                                <option value="flask">Flask</option>
+                                <option value="nodejs">Node.js</option>
+                            </optgroup>
+
+                            <optgroup label="Bases de données">
+                                <option value="postgresql">PostgreSQL</option>
+                                <option value="mysql">MySQL</option>
+                                <option value="sqlite">SQLite</option>
+                                <option value="mongodb">MongoDB</option>
+                                <option value="redis">Redis</option>
+                            </optgroup>
+
+                            <optgroup label="DevOps & Outils">
+                                <option value="docker">Docker</option>
+                                <option value="git">Git</option>
+                                <option value="github">GitHub</option>
+                                <option value="linux">Linux</option>
+                                <option value="postman">Postman</option>
+                            </optgroup>
+
+                            <optgroup label="Intelligence artificielle">
+                                <option value="openai">OpenAI</option>
+                                <option value="tensorflow">TensorFlow</option>
+                                <option value="pytorch">PyTorch</option>
+                            </optgroup>
+
+                            <optgroup label="Icônes générales">
+                                <option value="code">Code</option>
+                                <option value="server">Serveur</option>
+                                <option value="database">Base de données</option>
+                                <option value="shield">Sécurité</option>
+                                <option value="cloud">Cloud</option>
+                            </optgroup>
+                        </select>
+
+                        <p class="text-xs text-gray-500 mt-2">
+                            Sélectionne le logo correspondant à ta technologie.
+                        </p>
+                    </div>
+
+
+                    <!-- MISE EN AVANT -->
+                    <div class="flex items-center gap-3">
+
+                        <input type="checkbox" id="skill-is-featured" class="w-4 h-4">
+
+                        <label for="skill-is-featured" class="text-sm font-medium">
+                            Mettre cette compétence en avant
+                        </label>
+
+                    </div>
+
+
+                    <!-- BOUTONS -->
+                    <div class="flex gap-3">
+
+                        <button type="submit" id="save-skill-btn"
+                            class="bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-700">
+                            Enregistrer la compétence
+                        </button>
+
+                        <button type="button" id="cancel-skill-form"
+                            class="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-100">
+                            Annuler
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- LISTE DES COMPÉTENCES -->
+            <section class="bg-white border border-gray-200 rounded-xl">
+
+                <div class="p-6 border-b border-gray-100">
+                    <h3 class="font-bold text-gray-900">
+                        Toutes les compétences
+                    </h3>
+                </div>
+
+                <div id="skills-container" class="p-6">
+
+                    <p class="text-center text-gray-400 py-8">
+                        Chargement des compétences...
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
 
 <script src="js/auth.js"></script>
+<script src="js/skill-icons.js"></script>
 <script src="js/skills.js"></script>
 <script src="js/sidebar.js"></script>
 </body>
+
 </html>

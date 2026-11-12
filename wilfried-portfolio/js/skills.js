@@ -90,8 +90,8 @@ async function loadSkills() {
 
                     <div class="flex items-start gap-3">
 
-                        <div class="text-2xl">
-                            ${escapeHTML(skill.icon || "💻")}
+                        <div class="w-10 h-10 flex items-center justify-center">
+                            ${getSkillIcon(skill.icon)}
                         </div>
 
                         <div>

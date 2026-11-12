@@ -64,7 +64,7 @@ async function loadSkills() {
             return `
                 <article class="skill-card">
                     <div class="skill-icon">
-                        <span class="material-symbols-outlined">${icon}</span>
+                        ${getSkillIcon(skill.icon)}
                     </div>
 
                     <h3>${escapeHTML(skill.name)}</h3>
