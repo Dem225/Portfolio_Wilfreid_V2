@@ -1,0 +1,413 @@
+
+const API_URL = "http://127.0.0.1:8000";
+
+// Sécurisation du texte affiché dans le HTML
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[character]);
+}
+
+// Vérification des liens externes
+function safeURL(value) {
+    try {
+        const url = new URL(value);
+        return ["http:", "https:"].includes(url.protocol) ? url.href : null;
+    } catch {
+        return null;
+    }
+}
+
+// Formatage des dates
+function formatDate(value) {
+    if (!value) return "Date non précisée";
+
+    const date = new Date(`${value}T00:00:00`);
+
+    if (Number.isNaN(date.getTime())) return value;
+
+    return new Intl.DateTimeFormat("fr-FR", {
+        month: "long",
+        year: "numeric"
+    }).format(date);
+}
+
+// Chargement des compétences
+async function loadSkills() {
+    const container = document.getElementById("skills-container");
+
+    try {
+        const response = await fetch(`${API_URL}/skills/`);
+
+        if (!response.ok) {
+            throw new Error("Impossible de charger les compétences.");
+        }
+
+        const skills = await response.json();
+
+        if (!Array.isArray(skills) || skills.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    Les compétences seront bientôt disponibles.
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = skills.map(skill => {
+            const icon = escapeHTML(skill.icon || "terminal");
+
+            return `
+                <article class="skill-card">
+                    <div class="skill-icon">
+                        <span class="material-symbols-outlined">${icon}</span>
+                    </div>
+
+                    <h3>${escapeHTML(skill.name)}</h3>
+
+                    <p>${escapeHTML(skill.category)}</p>
+
+                    <span class="skill-level">
+                        ${escapeHTML(skill.level)}
+                    </span>
+                </article>
+            `;
+        }).join("");
+
+    } catch (error) {
+        console.error("Erreur compétences :", error);
+
+        container.innerHTML = `
+            <div class="empty-state error-state">
+                Impossible de charger les compétences.
+                Vérifiez que le serveur API est démarré.
+            </div>
+        `;
+    }
+}
+
+// Chargement des projets
+async function loadProjects() {
+    const container = document.getElementById("projects-container");
+
+    try {
+        const response = await fetch(`${API_URL}/projects/`);
+
+        if (!response.ok) {
+            throw new Error("Impossible de charger les projets.");
+        }
+
+        const projects = await response.json();
+
+        if (!Array.isArray(projects) || projects.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    Mes réalisations seront bientôt présentées ici.
+                </div>
+            `;
+            return;
+        }
+
+        // Les projets mis en avant apparaissent en premier
+        projects.sort((a, b) =>
+            Number(Boolean(b.is_featured)) - Number(Boolean(a.is_featured))
+        );
+
+        container.innerHTML = projects.map(project => {
+            const imageURL = safeURL(project.image_url);
+            const githubURL = safeURL(project.github_url);
+            const demoURL = safeURL(project.demo_url);
+
+            const technologies = Array.isArray(project.technologies)
+                ? project.technologies
+                : [];
+
+            return `
+                <article class="project-card">
+
+                    <div class="project-image">
+                        ${
+                            imageURL
+                                ? `<img src="${escapeHTML(imageURL)}"
+                                    alt="${escapeHTML(project.title)}"
+                                    loading="lazy"
+                                    onerror="this.style.display='none'">`
+                                : `<span class="material-symbols-outlined project-placeholder">terminal</span>`
+                        }
+                    </div>
+
+                    <div class="project-body">
+
+                        <h3>${escapeHTML(project.title)}</h3>
+
+                        <p>${escapeHTML(project.description)}</p>
+
+                        <div class="project-technologies">
+                            ${technologies.map(technology => `
+                                <span>${escapeHTML(technology)}</span>
+                            `).join("")}
+                        </div>
+
+                        <div class="project-links">
+                            ${
+                                githubURL
+                                    ? `<a href="${escapeHTML(githubURL)}"
+                                        target="_blank"
+                                        rel="noopener noreferrer">
+                                        <span class="material-symbols-outlined">code</span>
+                                        Code source
+                                    </a>`
+                                    : ""
+                            }
+
+                            ${
+                                demoURL
+                                    ? `<a href="${escapeHTML(demoURL)}"
+                                        target="_blank"
+                                        rel="noopener noreferrer">
+                                        <span class="material-symbols-outlined">open_in_new</span>
+                                        Démo
+                                    </a>`
+                                    : ""
+                            }
+                        </div>
+
+                    </div>
+                </article>
+            `;
+        }).join("");
+
+    } catch (error) {
+        console.error("Erreur projets :", error);
+
+        container.innerHTML = `
+            <div class="empty-state error-state">
+                Impossible de charger les projets.
+                Vérifiez que le serveur API est démarré.
+            </div>
+        `;
+    }
+}
+
+// Chargement des formations
+async function loadFormations() {
+    const container = document.getElementById("formations-container");
+
+    try {
+        const response = await fetch(`${API_URL}/formations/`);
+
+        if (!response.ok) {
+            throw new Error("Impossible de charger les formations.");
+        }
+
+        const formations = await response.json();
+
+        if (!Array.isArray(formations) || formations.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    Mon parcours sera bientôt disponible.
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = formations.map(formation => {
+            const certificateURL = safeURL(formation.certificate_url);
+
+            const startDate = formation.start_date
+                ? formatDate(formation.start_date)
+                : "";
+
+            const endDate = formation.end_date
+                ? formatDate(formation.end_date)
+                : "";
+
+            const period = [startDate, endDate].filter(Boolean).join(" — ");
+
+            return `
+                <article class="timeline-item">
+                    <div class="timeline-card">
+
+                        <span class="timeline-date">
+                            ${escapeHTML(period || formation.type || "Formation")}
+                        </span>
+
+                        <h3>${escapeHTML(formation.title)}</h3>
+
+                        <p>
+                            <strong>${escapeHTML(formation.institution)}</strong>
+                        </p>
+
+                        <p>${escapeHTML(formation.description)}</p>
+
+                        ${
+                            formation.is_completed
+                                ? `<span class="skill-level">Formation terminée</span>`
+                                : `<span class="skill-level">En cours ou à suivre</span>`
+                        }
+
+                        ${
+                            certificateURL
+                                ? `<p>
+                                    <a class="text-link"
+                                       href="${escapeHTML(certificateURL)}"
+                                       target="_blank"
+                                       rel="noopener noreferrer">
+                                        Voir le certificat
+                                        <span class="material-symbols-outlined">open_in_new</span>
+                                    </a>
+                                </p>`
+                                : ""
+                        }
+
+                    </div>
+                </article>
+            `;
+        }).join("");
+
+    } catch (error) {
+        console.error("Erreur formations :", error);
+
+        container.innerHTML = `
+            <div class="empty-state error-state">
+                Impossible de charger le parcours.
+                Vérifiez que le serveur API est démarré.
+            </div>
+        `;
+    }
+}
+
+// Envoi du formulaire de contact
+async function handleContactForm(event) {
+    event.preventDefault();
+
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("contact-status");
+    const submitButton = form.querySelector("button[type='submit']");
+
+    const formData = new FormData(form);
+
+    const message = {
+        name: formData.get("name").trim(),
+        email: formData.get("email").trim(),
+        subject: formData.get("subject").trim(),
+        message: formData.get("message").trim()
+    };
+
+    status.textContent = "Envoi de votre message...";
+    status.style.color = "#c5c1ff";
+    submitButton.disabled = true;
+    submitButton.style.opacity = "0.6";
+
+    try {
+        const response = await fetch(`${API_URL}/contact/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(message)
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            throw new Error(
+                result.detail || "Une erreur est survenue pendant l'envoi."
+            );
+        }
+
+        status.textContent = "Votre message a été envoyé avec succès. Merci !";
+        status.style.color = "#38c98b";
+
+        form.reset();
+
+    } catch (error) {
+        console.error("Erreur formulaire :", error);
+
+        status.textContent =
+            error.message || "Impossible d'envoyer le message. Réessayez.";
+
+        status.style.color = "#ff7777";
+
+    } finally {
+        submitButton.disabled = false;
+        submitButton.style.opacity = "1";
+    }
+}
+
+// Menu mobile
+function setupMobileMenu() {
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+
+        const icon = menuToggle.querySelector(".material-symbols-outlined");
+
+        icon.textContent = navLinks.classList.contains("open")
+            ? "close"
+            : "menu";
+    });
+
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("open");
+
+            menuToggle.querySelector(
+                ".material-symbols-outlined"
+            ).textContent = "menu";
+        });
+    });
+}
+
+// Initialisation du portfolio
+document.addEventListener("DOMContentLoaded", () => {
+    loadSkills();
+    loadProjects();
+    loadFormations();
+
+    document.getElementById("contact-form")
+        .addEventListener("submit", handleContactForm);
+
+    setupMobileMenu();
+});
+setupScrollReveal();
+
+
+// Animations déclenchées pendant le défilement
+function setupScrollReveal() {
+    const elements = document.querySelectorAll(
+        ".section-heading, .about-content, .tech-strip, " +
+        ".skill-card, .project-card, .timeline-item, .contact-panel"
+    );
+
+    if (!("IntersectionObserver" in window)) {
+        elements.forEach(element => {
+            element.classList.add("is-visible");
+        });
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12
+    });
+
+    elements.forEach(element => {
+        if (!element.classList.contains("reveal-on-scroll")) {
+            element.classList.add("reveal-on-scroll");
+            observer.observe(element);
+        }
+    });
+}
