@@ -1,0 +1,25 @@
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Bases de donnees
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Fichiers temporaires
+*.log
+.pytest_cache/
+
+# Scripts locaux
+backend/test_neon.py
+backend/migrate_sqlite_to_neon.py
+verifier_db.py

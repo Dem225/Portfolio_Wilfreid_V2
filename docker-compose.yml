@@ -1,0 +1,26 @@
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: portfolio-backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - portfolio_data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./wilfried-portfolio
+    container_name: portfolio-frontend
+    ports:
+      - "5500:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  portfolio_data:

@@ -1,7 +1,11 @@
+
+import os
+
+from sqlalchemy.engine import make_url
 from sqlalchemy.ext.asyncio import (
     create_async_engine,
     async_sessionmaker,
-    AsyncSession
+    AsyncSession,
 )
 
 from models.base import Base
@@ -10,19 +14,39 @@ from models.skill import Skill
 from models.formation import Formation
 from models.contact_message import ContactMessage
 from models.admin import Admin
-DATABASE_URL = "sqlite+aiosqlite:///./portfolio.db"
+
+
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "sqlite+aiosqlite:///./portfolio.db"
+)
+
+database_url = make_url(DATABASE_URL)
+connect_args = {}
+
+if database_url.drivername in ("postgresql", "postgresql+asyncpg"):
+    database_url = database_url.set(
+        drivername="postgresql+asyncpg"
+    )
+
+    query_params = dict(database_url.query)
+    query_params.pop("sslmode", None)
+    query_params.pop("channel_binding", None)
+
+    database_url = database_url.set(query=query_params)
+    connect_args = {"ssl": "require"}
 
 
 engine = create_async_engine(
-    DATABASE_URL,
-    echo=True
+    database_url,
+    echo=False,
+    connect_args=connect_args,
 )
-
 
 SessionLocal = async_sessionmaker(
     bind=engine,
     class_=AsyncSession,
-    expire_on_commit=False
+    expire_on_commit=False,
 )
 
 
