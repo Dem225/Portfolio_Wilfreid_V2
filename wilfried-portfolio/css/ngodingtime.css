@@ -1,0 +1,1194 @@
+
+/* ========================================
+   NGODINGTIME — PREMIUM MUSIC EXPERIENCE
+======================================== */
+
+:root {
+    --bg: #070B14;
+    --bg-secondary: #0B1220;
+    --card: rgba(16, 27, 47, 0.82);
+    --blue: #4F7DFF;
+    --cyan: #42D9FF;
+    --white: #F4F7FF;
+    --muted: #94A3B8;
+    --border: rgba(255, 255, 255, 0.09);
+    --font-heading: "Space Grotesk", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-body);
+}
+
+/* ========================================
+   BACKGROUND
+======================================== */
+
+.background-grid {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(79, 125, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 125, 255, 0.035) 1px, transparent 1px);
+
+    background-size: 55px 55px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+}
+
+.background-glow {
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(130px);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glow-one {
+    top: -150px;
+    left: -100px;
+    background: #286BFF;
+}
+
+.glow-two {
+    right: -150px;
+    bottom: -150px;
+    background: #00BFFF;
+}
+
+/* ========================================
+   MAIN CONTAINER
+======================================== */
+
+.ngodingtime-container {
+    width: min(1250px, 90%);
+    min-height: 100vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.topbar {
+    width: 100%;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    color: white;
+    background: linear-gradient(135deg, var(--blue), #2750BB);
+    box-shadow: 0 5px 25px rgba(79, 125, 255, 0.3);
+}
+
+.brand-highlight {
+    color: var(--cyan);
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 13px;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--cyan);
+}
+
+/* ========================================
+   HERO LAYOUT
+======================================== */
+
+.hero {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    align-items: center;
+    gap: 90px;
+    padding: 65px 0;
+}
+
+/* ========================================
+   HERO CONTENT
+======================================== */
+
+.hero-content {
+    animation: slideInLeft 0.9s ease both;
+}
+
+.status-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    margin-bottom: 35px;
+    border: 1px solid rgba(66, 217, 255, 0.15);
+    border-radius: 30px;
+    background: rgba(66, 217, 255, 0.05);
+    color: var(--cyan);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #42D9FF;
+    box-shadow: 0 0 12px #42D9FF;
+    animation: pulse 1.5s infinite;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(48px, 5.5vw, 76px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -3px;
+}
+
+.hero-content h1 span {
+    display: block;
+    color: var(--blue);
+    background: linear-gradient(90deg, #4F7DFF, #42D9FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    max-width: 450px;
+    margin-top: 28px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.hero-actions {
+    margin-top: 38px;
+}
+
+/* ========================================
+   SPOTIFY BUTTON
+======================================== */
+
+.spotify-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 17px 22px;
+    border: 1px solid rgba(79, 125, 255, 0.3);
+    border-radius: 12px;
+    background: linear-gradient(
+        135deg,
+        rgba(79, 125, 255, 0.2),
+        rgba(20, 50, 100, 0.45)
+    );
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.35s ease;
+}
+
+.spotify-button > i:first-child {
+    font-size: 22px;
+    color: #1ED760;
+}
+
+.spotify-button:hover {
+    transform: translateY(-4px);
+    border-color: var(--blue);
+    box-shadow: 0 12px 35px rgba(79, 125, 255, 0.2);
+}
+
+.external-icon {
+    font-size: 10px;
+    color: var(--muted);
+}
+
+.hero-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 70px;
+}
+
+.hero-footer span {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #60718D;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.hero-footer i {
+    color: var(--cyan);
+    font-size: 12px;
+}
+
+/* ========================================
+   MUSIC PLAYER
+======================================== */
+
+.player-wrapper {
+    position: relative;
+    animation: slideInRight 0.9s ease both;
+}
+
+.player-card {
+    position: relative;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    background: var(--card);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Player header */
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.player-eyebrow {
+    color: var(--cyan);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.player-header h2 {
+    margin-top: 7px;
+    font-family: var(--font-heading);
+    font-size: 22px;
+}
+
+.player-menu {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--muted);
+}
+
+/* ========================================
+   ALBUM COVER
+======================================== */
+
+.album-cover {
+    position: relative;
+    height: 245px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+
+    background:
+        radial-gradient(circle at 50% 45%, #2857B9, transparent 45%),
+        linear-gradient(135deg, #101F43, #080F20 70%);
+}
+
+.cover-orbit {
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    border: 1px solid rgba(66, 217, 255, 0.25);
+    border-radius: 50%;
+}
+
+.orbit-one {
+    transform: scale(1.2);
+    animation: rotateOrbit 15s linear infinite;
+}
+
+.orbit-two {
+    width: 260px;
+    height: 260px;
+    border-style: dashed;
+    opacity: 0.5;
+    animation: rotateOrbit 25s linear infinite reverse;
+}
+
+.cover-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+.cover-content i {
+    margin-bottom: 15px;
+    color: var(--cyan);
+    font-size: 55px;
+    filter: drop-shadow(0 0 25px rgba(66, 217, 255, 0.7));
+}
+
+.cover-content strong {
+    color: var(--cyan);
+    font-size: 28px;
+    letter-spacing: 8px;
+}
+
+.cover-glow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: var(--blue);
+    filter: blur(100px);
+    opacity: 0.35;
+}
+
+/* ========================================
+   TRACK INFORMATION
+======================================== */
+
+.track-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.track-info h3 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+}
+
+.track-info p {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.favorite-button {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.favorite-button:hover,
+.favorite-button.active {
+    color: #FF5C83;
+    background: rgba(255, 92, 131, 0.1);
+}
+
+/* ========================================
+   PROGRESS BAR
+======================================== */
+
+.progress-section {
+    margin-top: 25px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 5px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+}
+
+.time-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 9px;
+    color: #71819B;
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ========================================
+   PLAYER CONTROLS
+======================================== */
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin: 25px 0 30px;
+}
+
+.player-controls button {
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    color: #A6B5CE;
+    font-size: 17px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.player-controls button:hover {
+    color: var(--cyan);
+    transform: scale(1.1);
+}
+
+.player-controls .play-button {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), #2854C5);
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 8px 25px rgba(79, 125, 255, 0.35);
+}
+
+.player-controls .play-button:hover {
+    color: white;
+    box-shadow: 0 8px 35px rgba(79, 125, 255, 0.6);
+}
+
+/* ========================================
+   PLAYLIST
+======================================== */
+
+.playlist-section {
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+}
+
+.playlist-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.playlist-heading h3 {
+    font-family: var(--font-heading);
+    font-size: 14px;
+}
+
+.playlist-heading span {
+    color: var(--cyan);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.empty-playlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--muted);
+}
+
+.empty-playlist i {
+    margin-bottom: 12px;
+    color: var(--blue);
+    font-size: 25px;
+}
+
+.empty-playlist p {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.empty-playlist span {
+    margin-top: 5px;
+    color: #66758D;
+    font-size: 10px;
+}
+
+/* ========================================
+   PLAYER BOTTOM
+======================================== */
+
+.player-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    color: #62738E;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.player-bottom i {
+    margin-right: 5px;
+    color: var(--cyan);
+}
+
+/* ========================================
+   FLOATING BADGE
+======================================== */
+
+.floating-badge {
+    position: absolute;
+    right: -35px;
+    bottom: 75px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(16, 27, 47, 0.95);
+    color: var(--white);
+    font-size: 11px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+    animation: float 4s ease-in-out infinite;
+}
+
+.floating-badge i {
+    color: var(--cyan);
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.page-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0;
+    border-top: 1px solid var(--border);
+    color: #62738E;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 12px #42D9FF;
+    }
+
+    50% {
+        opacity: 0.4;
+        box-shadow: 0 0 3px #42D9FF;
+    }
+}
+
+@keyframes rotateOrbit {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ========================================
+   RESPONSIVE — TABLET
+======================================== */
+
+@media (max-width: 950px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 65px;
+        padding: 55px 0;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-footer {
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .player-wrapper {
+        width: min(500px, 100%);
+        margin: auto;
+    }
+
+    .floating-badge {
+        right: -15px;
+    }
+}
+
+/* ========================================
+   RESPONSIVE — MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+    .ngodingtime-container {
+        width: 90%;
+    }
+
+    .topbar {
+        padding: 22px 0;
+    }
+
+    .brand {
+        font-size: 15px;
+        gap: 8px;
+    }
+
+    .brand-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .back-link {
+        font-size: 11px;
+    }
+
+    .hero {
+        gap: 55px;
+        padding: 45px 0;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(42px, 11vw, 58px);
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-footer {
+        gap: 15px;
+    }
+
+    .hero-footer span {
+        font-size: 8px;
+    }
+
+    .player-card {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .album-cover {
+        height: 210px;
+    }
+
+    .floating-badge {
+        right: -5px;
+        bottom: -20px;
+        font-size: 10px;
+    }
+
+    .page-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+        font-size: 8px;
+    }
+}
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+    .back-link span {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: 39px;
+    }
+
+    .spotify-button {
+        padding: 15px;
+        font-size: 11px;
+    }
+
+    .player-controls {
+        gap: 20px;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+
+/* ========================================
+   NGODINGTIME — TRACK LIST
+======================================== */
+
+.track-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.track-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 12px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--white);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.track-item:hover {
+    background: rgba(79, 125, 255, 0.09);
+    border-color: rgba(79, 125, 255, 0.15);
+    transform: translateX(4px);
+}
+
+.track-item.active {
+    background: rgba(79, 125, 255, 0.13);
+    border-color: rgba(79, 125, 255, 0.25);
+}
+
+.track-number {
+    min-width: 22px;
+    color: #71819B;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.track-item.active .track-number {
+    color: var(--cyan);
+}
+
+.track-item-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.track-item-info strong {
+    overflow: hidden;
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.track-item-info small {
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.track-status {
+    color: #71819B;
+    font-size: 11px;
+}
+
+.track-item.active .track-status {
+    color: var(--cyan);
+}
+
+.track-item.active .track-status.fa-volume-high {
+    animation: musicPulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes musicPulse {
+    from {
+        opacity: 0.45;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+/* Focus clavier */
+.track-item:focus-visible,
+.player-controls button:focus-visible,
+.favorite-button:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+}
+
+
+/* Intégration du lecteur Spotify */
+.spotify-embed {
+    width: 100%;
+    margin-top: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    background: rgba(16, 27, 47, 0.7);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.spotify-embed iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 16px;
+}
+
+@media (max-width: 600px) {
+    .spotify-embed {
+        margin-top: 20px;
+        border-radius: 12px;
+    }
+
+    .spotify-embed iframe {
+        height: 352px;
+    }
+}
+
+
+/* ========================================
+   NGODINGTIME — SPOTIFY GLOW EFFECT
+======================================== */
+
+.spotify-embed {
+    position: relative;
+    border: 1px solid rgba(79, 125, 255, 0.35);
+    animation: spotifyGlow 4s ease-in-out infinite;
+    transition: border-color 0.4s ease;
+}
+
+@keyframes spotifyGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 12px rgba(79, 125, 255, 0.12),
+            0 0 25px rgba(66, 217, 255, 0.05);
+        border-color: rgba(79, 125, 255, 0.3);
+    }
+
+    50% {
+        box-shadow:
+            0 0 22px rgba(79, 125, 255, 0.3),
+            0 0 45px rgba(66, 217, 255, 0.18);
+        border-color: rgba(66, 217, 255, 0.65);
+    }
+}
+
+/* Respect des préférences de mouvement */
+@media (prefers-reduced-motion: reduce) {
+    .spotify-embed {
+        animation: none;
+    }
+}
+
+
+/* ========================================
+   NGODINGTIME — MUSIC EQUALIZER
+======================================== */
+
+.spotify-player-intro {
+    flex-wrap: wrap;
+}
+
+.spotify-intro-info {
+    flex: 1;
+    min-width: 120px;
+}
+
+.music-equalizer {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0 12px;
+}
+
+.music-equalizer span {
+    display: block;
+    width: 4px;
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(
+        to top,
+        #4F7DFF,
+        #42D9FF
+    );
+    animation: equalizerMove 0.8s ease-in-out infinite alternate;
+}
+
+.music-equalizer span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.music-equalizer span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.music-equalizer span:nth-child(4) {
+    animation-delay: 0.1s;
+}
+
+.music-equalizer span:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+@keyframes equalizerMove {
+    from {
+        height: 5px;
+    }
+
+    to {
+        height: 27px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .music-equalizer span {
+        animation: none;
+        height: 12px;
+    }
+}
+
+
+
+/* ========================================
+   NGODINGTIME — PREMIUM PLAYER FINISH
+======================================== */
+
+.player-card {
+    padding: 30px;
+    border-radius: 26px;
+    background: linear-gradient(
+        145deg,
+        rgba(16, 27, 47, 0.95),
+        rgba(7, 11, 20, 0.97)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.player-header h2 {
+    margin-top: 9px;
+    font-size: 27px;
+    letter-spacing: -0.8px;
+}
+
+.player-eyebrow {
+    letter-spacing: 2px;
+    font-size: 10px;
+    color: var(--cyan);
+}
+
+.spotify-player-intro {
+    padding: 17px;
+    border-radius: 17px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.spotify-embed {
+    margin-top: 18px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.spotify-embed:hover {
+    transform: translateY(-3px);
+}
+
+.player-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 17px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.player-bottom i {
+    color: var(--cyan);
+    margin-right: 6px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .player-card {
+        padding: 22px;
+        border-radius: 21px;
+    }
+
+    .player-header h2 {
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 480px) {
+    .player-card {
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .spotify-player-intro {
+        padding: 13px;
+    }
+
+    .spotify-player-intro h3 {
+        font-size: 15px;
+    }
+
+    .spotify-player-intro p {
+        font-size: 11px;
+    }
+
+    .music-equalizer {
+        margin: 0 4px;
+    }
+
+    .player-bottom {
+        font-size: 9px;
+    }
+}
+

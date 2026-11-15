@@ -23,6 +23,26 @@
 
 <body>
 
+    <!-- Écran de chargement -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                W<span>.</span>WILFREID
+            </div>
+
+            <div class="preloader-percentage">
+                <span id="loader-percent">0</span>%
+            </div>
+
+            <div class="preloader-progress">
+                <div id="loader-progress-bar"></div>
+            </div>
+
+            <p>Initialisation de l'expérience...</p>
+        </div>
+    </div>
+
+
     <!-- Navigation -->
 
     <nav class="navbar">
@@ -37,6 +57,7 @@
             <a href="#competences" class="nav-link">Compétences</a>
             <a href="#projets" class="nav-link">Projets</a>
             <a href="#formations" class="nav-link">Parcours</a>
+            <a href="ngodingtime.html" class="nav-link">NgodingTime</a>
         </div>
 
         <div class="nav-actions">
@@ -106,50 +127,54 @@
                 </div>
             </div>
 
+
             <div class="hero-visual">
                 <div class="visual-grid"></div>
 
-                <div class="hero-card">
-                    <div class="card-top">
-                        <div class="window-dots">
-                            <span></span><span></span><span></span>
+                <div class="developer-visual">
+                    <div class="visual-glow"></div>
+
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+
+                    <div class="developer-core">
+                        <div class="core-icon">
+                            <span class="material-symbols-outlined">terminal</span>
                         </div>
-                        <span>developer.py</span>
+                        <span class="core-label">BACKEND DEVELOPER</span>
+                        <h2>BUILD<span>.</span> CREATE<span>.</span> DEPLOY<span>.</span></h2>
+                        <p>Transforming ideas into digital solutions.</p>
                     </div>
 
-                    <div class="code-content">
-                        <p><span class="code-purple">class</span> <span class="code-yellow">Developer</span>:</p>
-                        <p class="indent"><span class="code-purple">def</span> <span
-                                class="code-blue">__init__</span>(self):</p>
-                        <p class="indent-2">self.name = <span class="code-green">"Wilfreid"</span></p>
-                        <p class="indent-2">self.role = <span class="code-green">"Backend Developer"</span></p>
-                        <p class="indent-2">self.language = <span class="code-green">"Python"</span></p>
-                        <p class="indent-2">self.frameworks = [</p>
-                        <p class="indent-3"><span class="code-green">"Django"</span>,</p>
-                        <p class="indent-3"><span class="code-green">"FastAPI"</span></p>
-                        <p class="indent-2">]</p>
-                        <br>
-                        <p class="indent"><span class="code-purple">def</span> <span
-                                class="code-blue">build</span>(self):</p>
-                        <p class="indent-2"><span class="code-purple">return</span> <span class="code-green">"Something
-                                amazing."</span></p>
-                        <br>
-                        <p class="terminal-cursor">▌</p>
+                    <div class="tech-badge badge-python">
+                        <span>🐍</span> Python
+                    </div>
+
+                    <div class="tech-badge badge-django">
+                        <span>⚡</span> Django
+                    </div>
+
+                    <div class="tech-badge badge-fastapi">
+                        <span>🚀</span> FastAPI
+                    </div>
+
+                    <div class="tech-badge badge-api">
+                        <span class="material-symbols-outlined">api</span>
+                        REST API
+                    </div>
+
+                    <div class="code-float">
+                        <div class="code-float-header">
+                            <span></span><span></span><span></span>
+                            <small>main.py</small>
+                        </div>
+                        <pre><code><span>class</span> Developer:
+    <span>def</span> create(self):
+        <span>return</span> "Innovation"</code></pre>
                     </div>
                 </div>
-
-                <div class="floating-tag tag-python">
-                    <span class="material-symbols-outlined">terminal</span>
-                    Python
-                </div>
-
-                <div class="floating-tag tag-api">
-                    <span class="material-symbols-outlined">database</span>
-                    REST API
-                </div>
-
-                <div class="hero-orbit"></div>
             </div>
+
 
             <div class="hero-bottom">
                 <span>SCROLL POUR EXPLORER</span>
@@ -170,44 +195,64 @@
             <div>REST API</div>
         </div>
 
+
         <!-- À propos -->
         <section class="about section-container section-spacing" id="apropos">
 
             <div class="section-heading">
                 <span class="section-eyebrow">01 — À PROPOS</span>
-                <h2>Créer avec logique.<br><span>Construire avec passion.</span></h2>
+                <h2>
+                    Derrière le code,<br>
+                    <span>une vision.</span>
+                </h2>
             </div>
 
             <div class="about-content">
-                <div class="about-number">01</div>
+
+                <div class="about-number">
+                    <span>01</span>
+                    <small>MON UNIVERS</small>
+                    <div class="about-decoration"></div>
+                </div>
 
                 <div class="about-text">
+
                     <p class="about-lead">
-                        Je suis un développeur Backend Python qui aime
-                        concevoir des solutions fiables, structurées et
-                        pensées pour répondre à de vrais besoins.
+                        Je suis Wilfreid, développeur Backend Python.
+                        Je conçois des applications web et des API
+                        pensées pour être fiables, performantes et utiles.
                     </p>
 
                     <p>
-                        Mon travail consiste à développer la logique métier,
-                        concevoir des API REST, gérer les bases de données
-                        et connecter les différentes parties d'une application.
+                        J'aime transformer une idée en une solution concrète.
+                        Je travaille notamment sur la logique métier,
+                        la conception d'API REST, la gestion des bases
+                        de données et la sécurisation des applications.
                     </p>
 
                     <p>
-                        J'accorde une grande importance à la qualité du code,
-                        à la sécurité et à l'expérience des utilisateurs.
-                        Chaque projet est pour moi une occasion d'apprendre
-                        et de progresser.
+                        Mon approche repose sur la rigueur, la curiosité
+                        et l'amélioration continue. Chaque projet représente
+                        une nouvelle occasion de développer mes compétences
+                        et de relever des défis techniques.
                     </p>
+
+                    <div class="about-tags">
+                        <span>Python</span>
+                        <span>Backend</span>
+                        <span>API REST</span>
+                        <span>Développement web</span>
+                    </div>
 
                     <a href="#contact" class="text-link">
                         Travaillons ensemble
                         <span class="material-symbols-outlined">arrow_outward</span>
                     </a>
+
                 </div>
             </div>
         </section>
+
 
         <!-- Compétences -->
         <section class="skills-section section-spacing" id="competences">

@@ -24,17 +24,24 @@
         color: "#3178C6",
         url: "https://cdn.simpleicons.org/typescript"
     },
+
+
     html5: {
-        name: "HTML5",
-        color: "#E34F26",
-        url: "https://cdn.simpleicons.org/html5"
+    name: "HTML5",
+    color: "#E34F26",
+    url: "https://cdn.simpleicons.org/html5"
     },
-    url: "https://cdn.simpleicons.org/css3/1572B6",
+    css3: {
+    name: "CSS3",
+    color: "#1572B6",
+    url: "https://cdn.simpleicons.org/css3/1572B6"
+    },
     php: {
         name: "PHP",
         color: "#777BB4",
         url: "https://cdn.simpleicons.org/php"
     },
+    
     flask: {
         name: "Flask",
         color: "#000000",

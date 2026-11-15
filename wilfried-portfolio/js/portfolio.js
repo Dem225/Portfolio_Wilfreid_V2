@@ -12,6 +12,66 @@
         })[character]);
     }
 
+/* ==============================
+   PRELOADER
+============================== */
+
+function setupPreloader() {
+    const preloader = document.getElementById("preloader");
+    const percentage = document.getElementById("loader-percent");
+    const progressBar = document.getElementById("loader-progress-bar");
+
+    if (!preloader || !percentage || !progressBar) return;
+
+    let progress = 0;
+    let finished = false;
+
+    function updateProgress() {
+        if (finished) return;
+
+        // Progression visuelle pendant le chargement
+        if (progress < 90) {
+            progress += Math.max(1, Math.ceil((90 - progress) / 45));
+        }
+
+        percentage.textContent = progress;
+        progressBar.style.width = `${progress}%`;
+
+        requestAnimationFrame(() => {
+            if (progress < 90) {
+               setTimeout(updateProgress, 100);
+            }
+        });
+    }
+
+    updateProgress();
+
+    window.addEventListener("load", () => {
+        if (finished) return;
+
+        finished = true;
+        progress = 100;
+
+        percentage.textContent = "100";
+        progressBar.style.width = "100%";
+
+        setTimeout(() => {
+            preloader.classList.add("preloader-hidden");
+            document.body.classList.add("page-loaded");
+
+            setTimeout(() => {
+                preloader.remove();
+            }, 750);
+        }, 600);
+    }, { once: true });
+}
+
+// Lancement immédiat du préchargeur
+setupPreloader();
+
+
+
+
     // VÃ©rification des liens externes
     function safeURL(value) {
         if (!value) return null;
@@ -441,14 +501,20 @@
 
 
     // Animations dÃ©clenchÃ©es pendant le dÃ©filement
+        
     function setupScrollReveal() {
-        const elements = document.querySelectorAll(
-            ".section-heading, .about-content, .tech-strip, " +
-            ".skill-card, .project-card, .timeline-item, .contact-panel"
-        );
+        const selectors = [
+            ".section-heading",
+            ".about-content",
+            ".tech-strip",
+            ".skill-card",
+            ".project-card",
+            ".timeline-item",
+            ".contact-panel"
+        ].join(", ");
 
         if (!("IntersectionObserver" in window)) {
-            elements.forEach(element => {
+            document.querySelectorAll(selectors).forEach(element => {
                 element.classList.add("is-visible");
             });
             return;
@@ -465,10 +531,39 @@
             threshold: 0.12
         });
 
-        elements.forEach(element => {
-            if (!element.classList.contains("reveal-on-scroll")) {
-                element.classList.add("reveal-on-scroll");
-                observer.observe(element);
-            }
+        function observeElements(container = document) {
+            container.querySelectorAll(selectors).forEach(element => {
+                if (!element.classList.contains("reveal-on-scroll")) {
+                    element.classList.add("reveal-on-scroll");
+                    observer.observe(element);
+                }
+            });
+        }
+
+        // Éléments déjà présents
+        observeElements();
+
+        // Détection des éléments ajoutés dynamiquement
+        const mutationObserver = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        if (node.matches(selectors)) {
+                            if (!node.classList.contains("reveal-on-scroll")) {
+                                node.classList.add("reveal-on-scroll");
+                                observer.observe(node);
+                            }
+                        }
+
+                        observeElements(node);
+                    }
+                });
+            });
+        });
+
+        mutationObserver.observe(document.body, {
+            childList: true,
+            subtree: true
         });
     }
+
