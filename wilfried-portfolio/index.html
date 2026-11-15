@@ -1,17 +1,20 @@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Portfolio professionnel de Wilfried, développeur Backend Python spécialisé en Django, FastAPI et développement d'applications web.">
+    <meta name="description"
+        content="Portfolio professionnel de Wilfreid, développeur Backend Python spécialisé en Django, FastAPI et développement d'applications web.">
 
-    <title>Wilfried | Backend Python Developer</title>
+    <title>Wilfreid | Backend Python Developer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 
@@ -21,10 +24,11 @@
 <body>
 
     <!-- Navigation -->
+
     <nav class="navbar">
         <a href="#accueil" class="logo">
             <span class="logo-mark">W.</span>
-            <span>WILFRIED<span class="logo-dot">.</span></span>
+            <span>WILFREID<span class="logo-dot">.</span></span>
         </a>
 
         <div class="nav-links" id="navLinks">
@@ -35,15 +39,23 @@
             <a href="#formations" class="nav-link">Parcours</a>
         </div>
 
-        <a href="#contact" class="nav-contact">
-            Me contacter
-            <span class="material-symbols-outlined">north_east</span>
-        </a>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activer le thème clair"
+                title="Changer de thème">
+                <span class="material-symbols-outlined" id="themeIcon">light_mode</span>
+            </button>
+
+            <a href="#contact" class="nav-contact">
+                Me contacter
+                <span class="material-symbols-outlined">north_east</span>
+            </a>
+        </div>
 
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">
             <span class="material-symbols-outlined">menu</span>
         </button>
     </nav>
+
 
     <main>
 
@@ -56,7 +68,7 @@
                     Développeur Backend Python
                 </div>
 
-                <p class="hero-intro">BONJOUR, JE SUIS WILFRIED 👋</p>
+                <p class="hero-intro">BONJOUR, JE SUIS WILFREID 👋</p>
 
                 <h1>
                     Je transforme<br>
@@ -107,8 +119,9 @@
 
                     <div class="code-content">
                         <p><span class="code-purple">class</span> <span class="code-yellow">Developer</span>:</p>
-                        <p class="indent"><span class="code-purple">def</span> <span class="code-blue">__init__</span>(self):</p>
-                        <p class="indent-2">self.name = <span class="code-green">"Wilfried"</span></p>
+                        <p class="indent"><span class="code-purple">def</span> <span
+                                class="code-blue">__init__</span>(self):</p>
+                        <p class="indent-2">self.name = <span class="code-green">"Wilfreid"</span></p>
                         <p class="indent-2">self.role = <span class="code-green">"Backend Developer"</span></p>
                         <p class="indent-2">self.language = <span class="code-green">"Python"</span></p>
                         <p class="indent-2">self.frameworks = [</p>
@@ -116,8 +129,10 @@
                         <p class="indent-3"><span class="code-green">"FastAPI"</span></p>
                         <p class="indent-2">]</p>
                         <br>
-                        <p class="indent"><span class="code-purple">def</span> <span class="code-blue">build</span>(self):</p>
-                        <p class="indent-2"><span class="code-purple">return</span> <span class="code-green">"Something amazing."</span></p>
+                        <p class="indent"><span class="code-purple">def</span> <span
+                                class="code-blue">build</span>(self):</p>
+                        <p class="indent-2"><span class="code-purple">return</span> <span class="code-green">"Something
+                                amazing."</span></p>
                         <br>
                         <p class="terminal-cursor">▌</p>
                     </div>
@@ -269,7 +284,8 @@
                         Je serais ravi d'échanger avec vous.
                     </p>
 
-                    <a href="https://github.com/Dem225" target="_blank" rel="noopener noreferrer" class="contact-github">
+                    <a href="https://github.com/Dem225" target="_blank" rel="noopener noreferrer"
+                        class="contact-github">
                         <span class="material-symbols-outlined">code</span>
                         github.com/Dem225
                     </a>
@@ -285,18 +301,21 @@
 
                         <div class="form-group">
                             <label for="contact-email">Votre email</label>
-                            <input type="email" id="contact-email" name="email" placeholder="email@exemple.com" required>
+                            <input type="email" id="contact-email" name="email" placeholder="email@exemple.com"
+                                required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="contact-subject">Sujet</label>
-                        <input type="text" id="contact-subject" name="subject" placeholder="Objet de votre message" required>
+                        <input type="text" id="contact-subject" name="subject" placeholder="Objet de votre message"
+                            required>
                     </div>
 
                     <div class="form-group">
                         <label for="contact-message">Votre message</label>
-                        <textarea id="contact-message" name="message" rows="5" placeholder="Parlez-moi de votre projet..." required></textarea>
+                        <textarea id="contact-message" name="message" rows="5"
+                            placeholder="Parlez-moi de votre projet..." required></textarea>
                     </div>
 
                     <button type="submit" class="button button-primary submit-button">
@@ -317,10 +336,10 @@
         <div class="section-container footer-content">
             <a href="#accueil" class="logo">
                 <span class="logo-mark">W.</span>
-                <span>WILFRIED<span class="logo-dot">.</span></span>
+                <span>WILFREID<span class="logo-dot">.</span></span>
             </a>
 
-            <p>Conçu avec passion par Wilfried © 2026</p>
+            <p>Conçu avec passion par Wilfreid © 2026</p>
 
             <a href="#accueil" class="back-top">
                 Retour en haut
@@ -329,7 +348,8 @@
         </div>
     </footer>
 
- <script src="js/skill-icons.js"></script>
-<script src="js/portfolio.js"></script>
+    <script src="js/skill-icons.js"></script>
+    <script src="js/portfolio.js"></script>
 </body>
+
 </html>
