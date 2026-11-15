@@ -1,10 +1,10 @@
+﻿
+const DASHBOARD_API_URL = "https://wilfreid-portfolio-api.onrender.com";
 
-const DASHBOARD_API_URL = "http://127.0.0.1:8000";
-
-// Récupérer le token administrateur
+// RÃ©cupÃ©rer le token administrateur
 const token = localStorage.getItem("access_token");
 
-// Fonction pour récupérer les données de l'API
+// Fonction pour rÃ©cupÃ©rer les donnÃ©es de l'API
 async function fetchAPI(endpoint) {
     const response = await fetch(`${DASHBOARD_API_URL}${endpoint}`, {
         headers: {
@@ -48,10 +48,10 @@ async function loadDashboard() {
         document.getElementById("unread-messages").textContent =
             unreadMessages.length;
 
-        // Afficher les messages récents
+        // Afficher les messages rÃ©cents
         displayRecentMessages(messages);
 
-        // Afficher les projets récents
+        // Afficher les projets rÃ©cents
         displayRecentProjects(projects);
 
     } catch (error) {
@@ -60,14 +60,14 @@ async function loadDashboard() {
 }
 
 
-// Afficher les messages récents
+// Afficher les messages rÃ©cents
 function displayRecentMessages(messages) {
     const container = document.getElementById("recent-messages");
 
     if (!messages.length) {
         container.innerHTML = `
             <p class="py-6 text-center text-sm text-gray-400">
-                Aucun message reçu pour le moment.
+                Aucun message reÃ§u pour le moment.
             </p>
         `;
         return;
@@ -103,14 +103,14 @@ function displayRecentMessages(messages) {
 }
 
 
-// Afficher les projets récents
+// Afficher les projets rÃ©cents
 function displayRecentProjects(projects) {
     const container = document.getElementById("recent-projects");
 
     if (!projects.length) {
         container.innerHTML = `
             <p class="py-6 text-center text-sm text-gray-400">
-                Aucun projet enregistré pour le moment.
+                Aucun projet enregistrÃ© pour le moment.
             </p>
         `;
         return;
@@ -128,7 +128,7 @@ function displayRecentProjects(projects) {
 }
 
 
-// Éviter l'injection de code HTML
+// Ã‰viter l'injection de code HTML
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
@@ -140,7 +140,7 @@ function escapeHTML(value) {
 }
 
 
-// Déconnexion
+// DÃ©connexion
 const logoutButton = document.getElementById("logout-btn");
 
 if (logoutButton) {

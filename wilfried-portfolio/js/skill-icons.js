@@ -1,4 +1,4 @@
-const SKILL_ICONS = {
+﻿const SKILL_ICONS = {
     python: {
         name: "Python",
         color: "#3776AB",

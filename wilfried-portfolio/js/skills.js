@@ -1,5 +1,5 @@
-
-const SKILLS_API_URL = "http://127.0.0.1:8000/skills/";
+﻿
+const SKILLS_API_URL = "https://wilfreid-portfolio-api.onrender.com/skills/";
 
 const skillForm = document.getElementById("skill-form");
 const skillFormSection = document.getElementById("skill-form-section");
@@ -9,7 +9,7 @@ const skillStatus = document.getElementById("skill-status");
 let editingSkillId = null;
 
 
-// Récupérer le token
+// RÃ©cupÃ©rer le token
 function getToken() {
     return localStorage.getItem("access_token");
 }
@@ -28,7 +28,7 @@ function showSkillStatus(message, success = true) {
 }
 
 
-// Sécuriser les textes affichés dans le HTML
+// SÃ©curiser les textes affichÃ©s dans le HTML
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
@@ -40,7 +40,7 @@ function escapeHTML(value) {
 }
 
 
-// Requête vers l'API
+// RequÃªte vers l'API
 async function skillRequest(url, method = "GET", data = null) {
     const options = {
         method,
@@ -69,7 +69,7 @@ async function skillRequest(url, method = "GET", data = null) {
 }
 
 
-// Afficher les compétences
+// Afficher les compÃ©tences
 async function loadSkills() {
     try {
         const skills = await skillRequest(SKILLS_API_URL);
@@ -77,7 +77,7 @@ async function loadSkills() {
         if (!skills.length) {
             skillsContainer.innerHTML = `
                 <p class="text-center text-gray-400 py-8">
-                    Aucune compétence enregistrée pour le moment.
+                    Aucune compÃ©tence enregistrÃ©e pour le moment.
                 </p>
             `;
             return;
@@ -145,7 +145,7 @@ async function loadSkills() {
     } catch (error) {
         skillsContainer.innerHTML = `
             <p class="text-center text-red-600 py-8">
-                Impossible de charger les compétences.
+                Impossible de charger les compÃ©tences.
             </p>
         `;
 
@@ -167,14 +167,14 @@ function closeSkillForm() {
     editingSkillId = null;
 
     document.getElementById("skill-form-title").textContent =
-        "Ajouter une compétence";
+        "Ajouter une compÃ©tence";
 
     document.getElementById("save-skill-btn").textContent =
-        "Enregistrer la compétence";
+        "Enregistrer la compÃ©tence";
 }
 
 
-// Modifier une compétence
+// Modifier une compÃ©tence
 async function editSkill(skillId) {
     try {
         const skill = await skillRequest(`${SKILLS_API_URL}${skillId}`);
@@ -188,7 +188,7 @@ async function editSkill(skillId) {
         document.getElementById("skill-is-featured").checked = skill.is_featured;
 
         document.getElementById("skill-form-title").textContent =
-            "Modifier une compétence";
+            "Modifier une compÃ©tence";
 
         document.getElementById("save-skill-btn").textContent =
             "Enregistrer les modifications";
@@ -206,7 +206,7 @@ async function editSkill(skillId) {
 }
 
 
-// Ajouter ou modifier une compétence
+// Ajouter ou modifier une compÃ©tence
 skillForm.addEventListener("submit", async function(event) {
     event.preventDefault();
 
@@ -226,7 +226,7 @@ skillForm.addEventListener("submit", async function(event) {
                 skillData
             );
 
-            showSkillStatus("Compétence modifiée avec succès.");
+            showSkillStatus("CompÃ©tence modifiÃ©e avec succÃ¨s.");
 
         } else {
             await skillRequest(
@@ -235,7 +235,7 @@ skillForm.addEventListener("submit", async function(event) {
                 skillData
             );
 
-            showSkillStatus("Compétence ajoutée avec succès.");
+            showSkillStatus("CompÃ©tence ajoutÃ©e avec succÃ¨s.");
         }
 
         closeSkillForm();
@@ -247,10 +247,10 @@ skillForm.addEventListener("submit", async function(event) {
 });
 
 
-// Supprimer une compétence
+// Supprimer une compÃ©tence
 async function deleteSkill(skillId) {
     const confirmation = confirm(
-        "Voulez-vous vraiment supprimer cette compétence ?"
+        "Voulez-vous vraiment supprimer cette compÃ©tence ?"
     );
 
     if (!confirmation) {
@@ -263,7 +263,7 @@ async function deleteSkill(skillId) {
             "DELETE"
         );
 
-        showSkillStatus("Compétence supprimée avec succès.");
+        showSkillStatus("CompÃ©tence supprimÃ©e avec succÃ¨s.");
         await loadSkills();
 
     } catch (error) {

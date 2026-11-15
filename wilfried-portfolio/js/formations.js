@@ -1,5 +1,5 @@
-
-const FORMATIONS_API_URL = "http://127.0.0.1:8000/formations/";
+﻿
+const FORMATIONS_API_URL = "https://wilfreid-portfolio-api.onrender.com/formations/";
 
 const token = () => localStorage.getItem("access_token");
 
@@ -61,7 +61,7 @@ async function formationRequest(url, options = {}) {
 }
 
 function formatDate(date) {
-    if (!date) return "Non renseignée";
+    if (!date) return "Non renseignÃ©e";
 
     return new Date(`${date}T00:00:00`).toLocaleDateString("fr-FR");
 }
@@ -75,7 +75,7 @@ async function loadFormations() {
         if (!formations || formations.length === 0) {
             container.innerHTML = `
                 <div class="p-8 text-center text-gray-500">
-                    Aucune formation enregistrée pour le moment.
+                    Aucune formation enregistrÃ©e pour le moment.
                 </div>
             `;
             return;
@@ -96,7 +96,7 @@ async function loadFormations() {
                             </span>
 
                             ${formation.is_completed
-                                ? '<span class="rounded-full bg-green-100 px-3 py-1 text-xs text-green-800">Terminée</span>'
+                                ? '<span class="rounded-full bg-green-100 px-3 py-1 text-xs text-green-800">TerminÃ©e</span>'
                                 : '<span class="rounded-full bg-yellow-100 px-3 py-1 text-xs text-yellow-800">En cours</span>'
                             }
 
@@ -242,7 +242,7 @@ form.addEventListener("submit", async event => {
                 }
             );
 
-            showFormationStatus("Formation modifiée avec succès !");
+            showFormationStatus("Formation modifiÃ©e avec succÃ¨s !");
 
         } else {
             await formationRequest(FORMATIONS_API_URL, {
@@ -250,7 +250,7 @@ form.addEventListener("submit", async event => {
                 body: JSON.stringify(data)
             });
 
-            showFormationStatus("Formation ajoutée avec succès !");
+            showFormationStatus("Formation ajoutÃ©e avec succÃ¨s !");
         }
 
         closeFormationForm();
@@ -273,7 +273,7 @@ async function deleteFormation(id) {
             method: "DELETE"
         });
 
-        showFormationStatus("Formation supprimée avec succès !");
+        showFormationStatus("Formation supprimÃ©e avec succÃ¨s !");
         await loadFormations();
 
     } catch (error) {
@@ -282,7 +282,7 @@ async function deleteFormation(id) {
 }
 
 
-// ÉVÉNEMENTS DES BOUTONS
+// Ã‰VÃ‰NEMENTS DES BOUTONS
 document.getElementById("open-formation-form")
     .addEventListener("click", openFormationForm);
 

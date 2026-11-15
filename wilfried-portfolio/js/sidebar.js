@@ -1,8 +1,8 @@
-
+﻿
 const SIDEBAR_ITEMS = [
     { page: "dashboard.html", label: "Vue d'ensemble", icon: "dashboard" },
     { page: "projets.html", label: "Projets", icon: "code" },
-    { page: "competences.html", label: "Compétences", icon: "psychology" },
+    { page: "competences.html", label: "CompÃ©tences", icon: "psychology" },
     { page: "formations.html", label: "Formations", icon: "school" },
     { page: "messages.html", label: "Messages", icon: "mail" }
 ];
@@ -51,7 +51,7 @@ function renderSidebar() {
             <button id="logout-btn"
                     class="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-red-600 hover:bg-red-50">
                 <span class="material-symbols-outlined">logout</span>
-                <span class="text-sm font-medium">Déconnexion</span>
+                <span class="text-sm font-medium">DÃ©connexion</span>
             </button>
         </div>
     `;

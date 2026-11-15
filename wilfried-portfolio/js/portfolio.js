@@ -1,7 +1,7 @@
-
+﻿
 const API_URL = "https://wilfreid-portfolio-api.onrender.com";
 
-// Sécurisation du texte affiché dans le HTML
+// SÃ©curisation du texte affichÃ© dans le HTML
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, (character) => ({
         "&": "&amp;",
@@ -12,7 +12,7 @@ function escapeHTML(value) {
     })[character]);
 }
 
-// Vérification des liens externes
+// VÃ©rification des liens externes
 function safeURL(value) {
     if (!value) return null;
 
@@ -39,7 +39,7 @@ function safeURL(value) {
 }
 // Formatage des dates
 function formatDate(value) {
-    if (!value) return "Date non précisée";
+    if (!value) return "Date non prÃ©cisÃ©e";
 
     const date = new Date(`${value}T00:00:00`);
 
@@ -51,7 +51,7 @@ function formatDate(value) {
     }).format(date);
 }
 
-// Chargement des compétences
+// Chargement des compÃ©tences
 async function loadSkills() {
     const container = document.getElementById("skills-container");
 
@@ -59,7 +59,7 @@ async function loadSkills() {
         const response = await fetch(`${API_URL}/skills/`);
 
         if (!response.ok) {
-            throw new Error("Impossible de charger les compétences.");
+            throw new Error("Impossible de charger les compÃ©tences.");
         }
 
         const skills = await response.json();
@@ -67,7 +67,7 @@ async function loadSkills() {
         if (!Array.isArray(skills) || skills.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
-                    Les compétences seront bientôt disponibles.
+                    Les compÃ©tences seront bientÃ´t disponibles.
                 </div>
             `;
             return;
@@ -94,12 +94,12 @@ async function loadSkills() {
         }).join("");
 
     } catch (error) {
-        console.error("Erreur compétences :", error);
+        console.error("Erreur compÃ©tences :", error);
 
         container.innerHTML = `
             <div class="empty-state error-state">
-                Impossible de charger les compétences.
-                Vérifiez que le serveur API est démarré.
+                Impossible de charger les compÃ©tences.
+                VÃ©rifiez que le serveur API est dÃ©marrÃ©.
             </div>
         `;
     }
@@ -121,7 +121,7 @@ async function loadProjects() {
         if (!Array.isArray(projects) || projects.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
-                    Mes réalisations seront bientôt présentées ici.
+                    Mes rÃ©alisations seront bientÃ´t prÃ©sentÃ©es ici.
                 </div>
             `;
             return;
@@ -185,7 +185,7 @@ async function loadProjects() {
                                         target="_blank"
                                         rel="noopener noreferrer">
                                         <span class="material-symbols-outlined">open_in_new</span>
-                                        Démo
+                                        DÃ©mo
                                     </a>`
                                     : ""
                             }
@@ -202,7 +202,7 @@ async function loadProjects() {
         container.innerHTML = `
             <div class="empty-state error-state">
                 Impossible de charger les projets.
-                Vérifiez que le serveur API est démarré.
+                VÃ©rifiez que le serveur API est dÃ©marrÃ©.
             </div>
         `;
     }
@@ -224,7 +224,7 @@ async function loadFormations() {
         if (!Array.isArray(formations) || formations.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
-                    Mon parcours sera bientôt disponible.
+                    Mon parcours sera bientÃ´t disponible.
                 </div>
             `;
             return;
@@ -241,7 +241,7 @@ async function loadFormations() {
                 ? formatDate(formation.end_date)
                 : "";
 
-            const period = [startDate, endDate].filter(Boolean).join(" — ");
+            const period = [startDate, endDate].filter(Boolean).join(" â€” ");
 
             return `
                 <article class="timeline-item">
@@ -261,8 +261,8 @@ async function loadFormations() {
 
                         ${
                             formation.is_completed
-                                ? `<span class="skill-level">Formation terminée</span>`
-                                : `<span class="skill-level">En cours ou à suivre</span>`
+                                ? `<span class="skill-level">Formation terminÃ©e</span>`
+                                : `<span class="skill-level">En cours ou Ã  suivre</span>`
                         }
 
                         ${
@@ -290,7 +290,7 @@ async function loadFormations() {
         container.innerHTML = `
             <div class="empty-state error-state">
                 Impossible de charger le parcours.
-                Vérifiez que le serveur API est démarré.
+                VÃ©rifiez que le serveur API est dÃ©marrÃ©.
             </div>
         `;
     }
@@ -335,7 +335,7 @@ async function handleContactForm(event) {
             );
         }
 
-        status.textContent = "Votre message a été envoyé avec succès. Merci !";
+        status.textContent = "Votre message a Ã©tÃ© envoyÃ© avec succÃ¨s. Merci !";
         status.style.color = "#38c98b";
 
         form.reset();
@@ -344,7 +344,7 @@ async function handleContactForm(event) {
         console.error("Erreur formulaire :", error);
 
         status.textContent =
-            error.message || "Impossible d'envoyer le message. Réessayez.";
+            error.message || "Impossible d'envoyer le message. RÃ©essayez.";
 
         status.style.color = "#ff7777";
 
@@ -394,7 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
 setupScrollReveal();
 
 
-// Animations déclenchées pendant le défilement
+// Animations dÃ©clenchÃ©es pendant le dÃ©filement
 function setupScrollReveal() {
     const elements = document.querySelectorAll(
         ".section-heading, .about-content, .tech-strip, " +

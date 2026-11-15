@@ -1,5 +1,5 @@
-
-const PROJECTS_API_URL = "http://127.0.0.1:8000/projects/";
+﻿
+const PROJECTS_API_URL = "https://wilfreid-portfolio-api.onrender.com/projects/";
 
 const projectsContainer = document.getElementById("projects-container");
 const projectForm = document.getElementById("project-form");
@@ -24,7 +24,7 @@ function showStatus(message, success = true) {
 }
 
 
-// Sécuriser les textes affichés
+// SÃ©curiser les textes affichÃ©s
 function escapeProjectHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
@@ -36,7 +36,7 @@ function escapeProjectHTML(value) {
 }
 
 
-// Requête vers l'API
+// RequÃªte vers l'API
 async function projectRequest(url, options = {}) {
     const response = await fetch(url, {
         ...options,
@@ -78,7 +78,7 @@ async function loadProjects() {
         if (projects.length === 0) {
             projectsContainer.innerHTML = `
                 <p class="text-center text-gray-400 py-8">
-                    Aucun projet enregistré pour le moment.
+                    Aucun projet enregistrÃ© pour le moment.
                 </p>
             `;
             return;
@@ -133,7 +133,7 @@ async function loadProjects() {
 
                             ${project.demo_url ? `
                                 <a href="${escapeProjectHTML(project.demo_url)}" target="_blank" rel="noopener noreferrer" class="text-gray-700 underline">
-                                    Démonstration
+                                    DÃ©monstration
                                 </a>
                             ` : ""}
 
@@ -236,7 +236,7 @@ async function editProject(projectId) {
 }
 
 
-// Créer ou modifier un projet
+// CrÃ©er ou modifier un projet
 projectForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -264,7 +264,7 @@ projectForm.addEventListener("submit", async (event) => {
                 }
             );
 
-            showStatus("Projet modifié avec succès.");
+            showStatus("Projet modifiÃ© avec succÃ¨s.");
 
         } else {
             await projectRequest(PROJECTS_API_URL, {
@@ -272,7 +272,7 @@ projectForm.addEventListener("submit", async (event) => {
                 body: JSON.stringify(projectData)
             });
 
-            showStatus("Projet ajouté avec succès.");
+            showStatus("Projet ajoutÃ© avec succÃ¨s.");
         }
 
         closeProjectForm();
@@ -287,7 +287,7 @@ projectForm.addEventListener("submit", async (event) => {
 // Supprimer un projet
 async function deleteProject(projectId) {
     const confirmed = confirm(
-        "Es-tu sûr de vouloir supprimer ce projet ?"
+        "Es-tu sÃ»r de vouloir supprimer ce projet ?"
     );
 
     if (!confirmed) {
@@ -300,7 +300,7 @@ async function deleteProject(projectId) {
             { method: "DELETE" }
         );
 
-        showStatus("Projet supprimé avec succès.");
+        showStatus("Projet supprimÃ© avec succÃ¨s.");
 
         await loadProjects();
 
@@ -310,13 +310,13 @@ async function deleteProject(projectId) {
 }
 
 
-// Événements des boutons
+// Ã‰vÃ©nements des boutons
 openFormButton.addEventListener("click", openCreateForm);
 closeFormButton.addEventListener("click", closeProjectForm);
 cancelFormButton.addEventListener("click", closeProjectForm);
 
 
-// Déconnexion
+// DÃ©connexion
 const logoutButton = document.getElementById("logout-btn");
 
 if (logoutButton) {

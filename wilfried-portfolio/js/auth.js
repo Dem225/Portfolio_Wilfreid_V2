@@ -1,10 +1,10 @@
-
-const API_URL = "http://127.0.0.1:8000";
+﻿
+const API_URL = "https://wilfreid-portfolio-api.onrender.com";
 
 async function verifyAdminAccess() {
     const token = localStorage.getItem("access_token");
 
-    // Aucun token : retour à la connexion
+    // Aucun token : retour Ã  la connexion
     if (!token) {
         window.location.replace("login.html");
         return;
@@ -18,20 +18,20 @@ async function verifyAdminAccess() {
             }
         });
 
-        // Token invalide ou expiré
+        // Token invalide ou expirÃ©
         if (!response.ok) {
             localStorage.removeItem("access_token");
             window.location.replace("login.html");
             return;
         }
 
-        console.log("Accès administrateur autorisé.");
+        console.log("AccÃ¨s administrateur autorisÃ©.");
 
     } catch (error) {
-        console.error("Erreur de vérification :", error);
+        console.error("Erreur de vÃ©rification :", error);
         document.body.innerHTML = `
-            <p>Impossible de vérifier votre authentification.
-            Vérifiez que le serveur est démarré.</p>
+            <p>Impossible de vÃ©rifier votre authentification.
+            VÃ©rifiez que le serveur est dÃ©marrÃ©.</p>
         `;
     }
 }

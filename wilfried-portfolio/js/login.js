@@ -1,5 +1,5 @@
-
-const API_URL = "http://127.0.0.1:8000";
+﻿
+const API_URL = "https://wilfreid-portfolio-api.onrender.com";
 
 const loginForm = document.getElementById("login-form");
 const emailInput = document.getElementById("email");
@@ -47,7 +47,7 @@ loginForm.addEventListener("submit", async (event) => {
 
     submitBtn.disabled = true;
     submitBtn.classList.add("loading");
-    btnText.textContent = "Vérification...";
+    btnText.textContent = "VÃ©rification...";
 
     try {
         const formData = new URLSearchParams();
@@ -74,7 +74,7 @@ loginForm.addEventListener("submit", async (event) => {
         // Enregistrer le token JWT
         localStorage.setItem("access_token", data.access_token);
 
-        btnText.textContent = "Connexion réussie...";
+        btnText.textContent = "Connexion rÃ©ussie...";
 
         // Redirection vers le dashboard
         window.location.href = "dashboard.html";
@@ -86,8 +86,8 @@ loginForm.addEventListener("submit", async (event) => {
         submitBtn.disabled = false;
         submitBtn.classList.remove("loading");
 
-        if (btnText.textContent !== "Connexion réussie...") {
-            btnText.textContent = "Connexion sécurisée";
+        if (btnText.textContent !== "Connexion rÃ©ussie...") {
+            btnText.textContent = "Connexion sÃ©curisÃ©e";
         }
     }
 });

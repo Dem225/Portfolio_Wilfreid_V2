@@ -1,12 +1,12 @@
-
-const MESSAGES_API_URL = "http://127.0.0.1:8000/contact/";
+﻿
+const MESSAGES_API_URL = "https://wilfreid-portfolio-api.onrender.com/contact/";
 
 const messagesContainer = document.getElementById("messages-container");
 const messageModal = document.getElementById("message-modal");
 const messageDetails = document.getElementById("message-details");
 
 
-// Sécuriser les textes affichés
+// SÃ©curiser les textes affichÃ©s
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
@@ -31,7 +31,7 @@ function showMessageStatus(message, success = true) {
 }
 
 
-// Effectuer une requête vers l'API
+// Effectuer une requÃªte vers l'API
 async function messageRequest(url, options = {}) {
     const response = await fetch(url, {
         ...options,
@@ -76,7 +76,7 @@ function formatMessageDate(date) {
 }
 
 
-// Mettre à jour les statistiques
+// Mettre Ã  jour les statistiques
 function updateMessageStats(messages) {
     const total = messages.length;
     const unread = messages.filter(message => !message.is_read).length;
@@ -101,7 +101,7 @@ async function loadMessages() {
                     <span class="material-symbols-outlined text-4xl">
                         inbox
                     </span>
-                    <p class="mt-3">Aucun message reçu pour le moment.</p>
+                    <p class="mt-3">Aucun message reÃ§u pour le moment.</p>
                 </div>
             `;
             return;
@@ -202,7 +202,7 @@ async function readMessage(id) {
 
         messageDetails.innerHTML = `
             <div>
-                <p class="text-sm text-gray-500">Expéditeur</p>
+                <p class="text-sm text-gray-500">ExpÃ©diteur</p>
                 <p class="font-semibold text-gray-900">
                     ${escapeHTML(message.name)}
                 </p>
@@ -224,7 +224,7 @@ async function readMessage(id) {
             </div>
 
             <div>
-                <p class="text-sm text-gray-500">Date de réception</p>
+                <p class="text-sm text-gray-500">Date de rÃ©ception</p>
                 <p class="text-gray-900">
                     ${formatMessageDate(message.created_at)}
                 </p>
@@ -259,7 +259,7 @@ async function markMessageAsRead(id) {
             })
         });
 
-        showMessageStatus("Message marqué comme lu !");
+        showMessageStatus("Message marquÃ© comme lu !");
         await loadMessages();
 
     } catch (error) {
@@ -281,7 +281,7 @@ async function deleteMessage(id) {
             method: "DELETE"
         });
 
-        showMessageStatus("Message supprimé avec succès !");
+        showMessageStatus("Message supprimÃ© avec succÃ¨s !");
         await loadMessages();
 
     } catch (error) {
@@ -290,7 +290,7 @@ async function deleteMessage(id) {
 }
 
 
-// Fermer la fenêtre de lecture
+// Fermer la fenÃªtre de lecture
 function closeMessageModal() {
     messageModal.classList.add("hidden");
     messageModal.classList.remove("flex");
@@ -303,5 +303,5 @@ document.getElementById("close-message-modal-bottom")
     .addEventListener("click", closeMessageModal);
 
 
-// Charger les messages au démarrage
+// Charger les messages au dÃ©marrage
 loadMessages();
