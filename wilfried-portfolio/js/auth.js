@@ -1,5 +1,6 @@
 ﻿
-const API_URL = "https://wilfreid-portfolio-api.onrender.com";
+const API_URL = "http://localhost:8000";
+
 
 async function verifyAdminAccess() {
     const token = localStorage.getItem("access_token");

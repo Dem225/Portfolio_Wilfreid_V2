@@ -1,5 +1,5 @@
 ﻿
-const DASHBOARD_API_URL = "https://wilfreid-portfolio-api.onrender.com";
+const DASHBOARD_API_URL = "http://localhost:8000";
 
 // RÃ©cupÃ©rer le token administrateur
 const token = localStorage.getItem("access_token");

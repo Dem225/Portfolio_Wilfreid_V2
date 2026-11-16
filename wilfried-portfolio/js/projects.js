@@ -1,5 +1,5 @@
 ﻿
-const PROJECTS_API_URL = "https://wilfreid-portfolio-api.onrender.com/projects/";
+const PROJECTS_API_URL = "http://localhost:8000/projects/";
 
 const projectsContainer = document.getElementById("projects-container");
 const projectForm = document.getElementById("project-form");
@@ -24,7 +24,7 @@ function showStatus(message, success = true) {
 }
 
 
-// SÃ©curiser les textes affichÃ©s
+// Sécuriser les textes affichés
 function escapeProjectHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
@@ -36,7 +36,7 @@ function escapeProjectHTML(value) {
 }
 
 
-// RequÃªte vers l'API
+// Requête vers l'API
 async function projectRequest(url, options = {}) {
     const response = await fetch(url, {
         ...options,
@@ -75,10 +75,10 @@ async function loadProjects() {
     try {
         const projects = await projectRequest(PROJECTS_API_URL);
 
-        if (projects.length === 0) {
+        if (!Array.isArray(projects) || projects.length === 0) {
             projectsContainer.innerHTML = `
                 <p class="text-center text-gray-400 py-8">
-                    Aucun projet enregistrÃ© pour le moment.
+                    Aucun projet enregistré pour le moment.
                 </p>
             `;
             return;
@@ -126,21 +126,35 @@ async function loadProjects() {
                         <div class="flex flex-wrap gap-4 mt-4 text-sm">
 
                             ${project.github_url ? `
-                                <a href="${escapeProjectHTML(project.github_url)}" target="_blank" rel="noopener noreferrer" class="text-gray-700 underline">
+                                <a href="${escapeProjectHTML(project.github_url)}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="text-gray-700 underline">
                                     GitHub
                                 </a>
                             ` : ""}
 
                             ${project.demo_url ? `
-                                <a href="${escapeProjectHTML(project.demo_url)}" target="_blank" rel="noopener noreferrer" class="text-gray-700 underline">
-                                    DÃ©monstration
+                                <a href="${escapeProjectHTML(project.demo_url)}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="text-gray-700 underline">
+                                    Démonstration
+                                </a>
+                            ` : ""}
+
+                            ${project.youtube_url ? `
+                                <a href="${escapeProjectHTML(project.youtube_url)}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="text-red-600 underline">
+                                    Vidéo YouTube
                                 </a>
                             ` : ""}
 
                         </div>
 
                     </div>
-
 
                     <div class="flex gap-2 items-start">
 
@@ -218,8 +232,11 @@ async function editProject(projectId) {
         document.getElementById("image_url").value = project.image_url || "";
         document.getElementById("github_url").value = project.github_url || "";
         document.getElementById("demo_url").value = project.demo_url || "";
+        document.getElementById("youtube_url").value = project.youtube_url || "";
+
         document.getElementById("technologies").value =
             (project.technologies || []).join(", ");
+
         document.getElementById("is_featured").checked = project.is_featured;
 
         document.getElementById("form-title").textContent = "Modifier le projet";
@@ -236,7 +253,7 @@ async function editProject(projectId) {
 }
 
 
-// CrÃ©er ou modifier un projet
+// Créer ou modifier un projet
 projectForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -247,10 +264,13 @@ projectForm.addEventListener("submit", async (event) => {
         image_url: document.getElementById("image_url").value.trim() || null,
         github_url: document.getElementById("github_url").value.trim() || null,
         demo_url: document.getElementById("demo_url").value.trim() || null,
+        youtube_url: document.getElementById("youtube_url").value.trim() || null,
+
         technologies: document.getElementById("technologies").value
             .split(",")
             .map(item => item.trim())
             .filter(Boolean),
+
         is_featured: document.getElementById("is_featured").checked
     };
 
@@ -264,7 +284,7 @@ projectForm.addEventListener("submit", async (event) => {
                 }
             );
 
-            showStatus("Projet modifiÃ© avec succÃ¨s.");
+            showStatus("Projet modifié avec succès.");
 
         } else {
             await projectRequest(PROJECTS_API_URL, {
@@ -272,7 +292,7 @@ projectForm.addEventListener("submit", async (event) => {
                 body: JSON.stringify(projectData)
             });
 
-            showStatus("Projet ajoutÃ© avec succÃ¨s.");
+            showStatus("Projet ajouté avec succès.");
         }
 
         closeProjectForm();
@@ -287,7 +307,7 @@ projectForm.addEventListener("submit", async (event) => {
 // Supprimer un projet
 async function deleteProject(projectId) {
     const confirmed = confirm(
-        "Es-tu sÃ»r de vouloir supprimer ce projet ?"
+        "Es-tu sûr de vouloir supprimer ce projet ?"
     );
 
     if (!confirmed) {
@@ -300,7 +320,7 @@ async function deleteProject(projectId) {
             { method: "DELETE" }
         );
 
-        showStatus("Projet supprimÃ© avec succÃ¨s.");
+        showStatus("Projet supprimé avec succès.");
 
         await loadProjects();
 
@@ -310,13 +330,13 @@ async function deleteProject(projectId) {
 }
 
 
-// Ã‰vÃ©nements des boutons
+// Événements des boutons
 openFormButton.addEventListener("click", openCreateForm);
 closeFormButton.addEventListener("click", closeProjectForm);
 cancelFormButton.addEventListener("click", closeProjectForm);
 
 
-// DÃ©connexion
+// Déconnexion
 const logoutButton = document.getElementById("logout-btn");
 
 if (logoutButton) {

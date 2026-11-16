@@ -1,4 +1,4 @@
-vscode_lsp_terminal_prompt_tracker= {}
+
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -12,6 +12,7 @@ class ProjectBase(BaseModel):
     image_url: str | None = None
     github_url: str | None = None
     demo_url: str | None = None
+    youtube_url: str | None = None
     technologies: list[str] = Field(default_factory=list)
     is_featured: bool = False
 
@@ -29,6 +30,7 @@ class ProjectUpdate(BaseModel):
     image_url: str | None = None
     github_url: str | None = None
     demo_url: str | None = None
+    youtube_url: str | None = None
     technologies: list[str] | None = None
     is_featured: bool | None = None
 

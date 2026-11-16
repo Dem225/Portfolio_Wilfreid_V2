@@ -1,5 +1,5 @@
 ﻿
-const SKILLS_API_URL = "https://wilfreid-portfolio-api.onrender.com/skills/";
+const SKILLS_API_URL = "http://localhost:8000/skills/";
 
 const skillForm = document.getElementById("skill-form");
 const skillFormSection = document.getElementById("skill-form-section");

@@ -1,6 +1,5 @@
 
 import os
-
 from sqlalchemy.engine import make_url
 from sqlalchemy.ext.asyncio import (
     create_async_engine,
@@ -53,8 +52,3 @@ SessionLocal = async_sessionmaker(
 async def get_db():
     async with SessionLocal() as db:
         yield db
-
-
-async def create_tables():
-    async with engine.begin() as connection:
-        await connection.run_sync(Base.metadata.create_all)

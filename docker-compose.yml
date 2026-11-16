@@ -6,10 +6,12 @@ services:
     container_name: portfolio-backend
     env_file:
       - ./backend/.env
+    environment:
+      DATABASE_URL: "sqlite+aiosqlite:////app/portfolio.db"
     ports:
       - "8000:8000"
     volumes:
-      - portfolio_data:/app/data
+      - ./backend/portfolio.db:/app/portfolio.db
     restart: unless-stopped
 
   frontend:
@@ -21,6 +23,3 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
-
-volumes:
-  portfolio_data:

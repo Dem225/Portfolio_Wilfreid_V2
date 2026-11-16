@@ -23,3 +23,9 @@ __pycache__/
 backend/test_neon.py
 backend/migrate_sqlite_to_neon.py
 verifier_db.py
+
+# Scripts réservés à l'environnement local
+backend/add_youtube_column.py
+backend/initialiser_admin_local.py
+
+backend/importer_donnees_production.py

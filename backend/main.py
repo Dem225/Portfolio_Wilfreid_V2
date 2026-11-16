@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from database import engine, create_tables
+from database import engine
 from routes.project_routes import router as project_router
 from routes.skill_routes import router as skill_router
 from routes.formation_routes import router as formation_router
@@ -17,10 +17,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await create_tables()
     yield
     await engine.dispose()
 

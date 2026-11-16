@@ -1,5 +1,5 @@
 ﻿
-const FORMATIONS_API_URL = "https://wilfreid-portfolio-api.onrender.com/formations/";
+const FORMATIONS_API_URL = "http://localhost:8000/formations/";
 
 const token = () => localStorage.getItem("access_token");
 

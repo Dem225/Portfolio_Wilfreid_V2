@@ -1,5 +1,5 @@
 ﻿
-const MESSAGES_API_URL = "https://wilfreid-portfolio-api.onrender.com/contact/";
+const MESSAGES_API_URL = "http://localhost:8000/contact/";
 
 const messagesContainer = document.getElementById("messages-container");
 const messageModal = document.getElementById("message-modal");

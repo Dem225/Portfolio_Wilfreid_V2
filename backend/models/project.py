@@ -27,6 +27,11 @@ class Project(Base):
 
     demo_url: Mapped[str | None] = mapped_column(String(255), nullable=True)
 
+    youtube_url: Mapped[str | None] = mapped_column(
+        String(255),
+        nullable=True
+    )
+
     technologies: Mapped[list[str]] = mapped_column(JSON, default=list)
 
     is_featured: Mapped[bool] = mapped_column(Boolean, default=False)

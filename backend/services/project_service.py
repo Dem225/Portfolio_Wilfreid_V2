@@ -1,4 +1,4 @@
-vscode_lsp_terminal_prompt_tracker= {}
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -7,7 +7,10 @@ from schemas.project_schema import ProjectCreate, ProjectUpdate
 
 
 # CREATE : créer un projet
-async def create_project(db: AsyncSession, project_data: ProjectCreate):
+async def create_project(
+    db: AsyncSession,
+    project_data: ProjectCreate
+):
     new_project = Project(**project_data.model_dump())
 
     db.add(new_project)
@@ -27,7 +30,10 @@ async def get_all_projects(db: AsyncSession):
 
 
 # READ : récupérer un projet par son ID
-async def get_project_by_id(db: AsyncSession, project_id: int):
+async def get_project_by_id(
+    db: AsyncSession,
+    project_id: int
+):
     result = await db.execute(
         select(Project).where(Project.id == project_id)
     )
@@ -53,7 +59,10 @@ async def update_project(
 
 
 # DELETE : supprimer un projet
-async def delete_project(db: AsyncSession, project: Project):
+async def delete_project(
+    db: AsyncSession,
+    project: Project
+):
     await db.delete(project)
     await db.commit()
 
